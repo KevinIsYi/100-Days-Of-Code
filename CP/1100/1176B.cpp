@@ -8,6 +8,7 @@ int main() {
 	
 	int t, n;
 	long long count, each;
+	long long extra[2];
 	
 	cin >> t;
 	while(t--) {
