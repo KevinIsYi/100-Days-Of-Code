@@ -2,8 +2,6 @@
 
 using namespace std;
 
-long long extra[2];
-
 int main() {
 	ios::sync_with_stdio(0);
 	cin.tie(0);
