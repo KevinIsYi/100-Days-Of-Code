@@ -1,0 +1,26 @@
+.box {
+    border-style: solid;
+    border-color: black;
+    border-width: 5px;
+    background-color: yellow;
+    text-align: center;
+    margin: 50px
+}
+.first-level {
+    background-color: blue;
+    padding: 50px;
+    margin: 50px;
+}
+.second-level {
+    background-color: red;
+    padding: 10px;
+}
+.text1 {
+    background-color: violet;
+    padding: 30px;
+}
+.text2 {
+    background-color: aqua;
+    padding: 10px;
+}
+

@@ -11,3 +11,6 @@ So please don't give more than one element the same id attribute.
 Here's an example of how you give your h2 element the id of cat-photo-app:
 
 <h2 id="cat-photo-app">
+
+Import google fonts
+<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
