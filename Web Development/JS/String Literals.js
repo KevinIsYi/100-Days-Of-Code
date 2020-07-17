@@ -37,4 +37,5 @@ function total(price, price2) {
     return price + price2;
 }
 
-document.getElementById('old').innerHTML = html;
+document.getElementById('new').innerHTML = html;
+
