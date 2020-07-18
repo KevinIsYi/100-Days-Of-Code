@@ -14,7 +14,6 @@ long long LCD(long long a, long long b) {
 	if (a < b) {
 		swap(a, b);
 	}
-	
 	a /= GCD(a, b);
 	return a * b;
 }
