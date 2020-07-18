@@ -14,3 +14,10 @@ Here's an example of how you give your h2 element the id of cat-photo-app:
 
 Import google fonts
 <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+
+:root {
+  --penguin-belly: pink;
+}
+
+background: var(--penguin-skin);
+background: var(--penguin-skin, black);
