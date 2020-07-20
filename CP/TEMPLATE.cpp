@@ -19,7 +19,7 @@ long long LCD(long long a, long long b) {
 }
 
 template <typename T>
-vector<int> allDivisors(T n) {
+vector<T> allDivisors(T n) {
 	vector<T> divisors;
 	
 	for (int i = 1 ; i <= sqrt(n) ; ++i) {
