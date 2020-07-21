@@ -1,5 +1,32 @@
+h2 {
+    color: white;
+    text-align: center;
+    width: 50%;
+}
+
 h1 {
     position: relative;
     top: 10px;
     left: 50px;
+}
+
+.rel {
+    position: relative;
+    font-size: 50px;
+}
+.absol {
+    position: absolute;
+    font-size: 30px;
+    left: 300px;
+    top: 50px
+}
+
+.right {
+    float: right;
+    background-color: red;
+}
+
+.left {
+    float: left;
+    background-color: blue;
 }

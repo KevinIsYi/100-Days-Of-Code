@@ -59,3 +59,8 @@ it changes the amount of vertical space that each line of text gets.
 
 position relative: top, bottom, right, left
 top: 10px // Push elements 10px downg
+
+position absolute: You can move the sun as you want but it will be part of the parent, 
+if you change parent's position, both will move. It's like merging two photos into one
+
+position fixed: Elements will always remain in their position, they won´t scroll if the user does it.
