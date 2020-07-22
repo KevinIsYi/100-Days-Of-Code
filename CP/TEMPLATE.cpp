@@ -2,8 +2,8 @@
 
 using namespace std;
 
-#define all(x) begin(x), end(x)
-#define allr(x) rbegin(x), rend(x)
+#define all(x) x.begin(), x.end()
+#define allr(x) x.rbegin(), x.rend()
 
 template <typename T>
 T GCD(T a, T b) {
