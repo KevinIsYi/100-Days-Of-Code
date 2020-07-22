@@ -1,0 +1,63 @@
+.square {
+    height: 400px;
+    width: 400px;
+}
+
+.orange {
+    background-color: #FF7F00;
+}
+
+.cyan {
+    background-color: #00FFFF;
+}
+
+.raspberry {
+    background-color: #FF007F;
+}
+
+div {
+    height: 100px;
+    width: 100px;
+    margin: 5px auto;
+}
+
+.hsl {
+    display: inline-block;
+    height: 100px;
+    width: 100px;
+}
+
+.disp {
+    display: inline-block;
+    height: 100px;
+    width: 100px;
+}
+
+.green {
+    background-color: hsl(120, 100%, 50%);
+}
+
+.cyan {
+    background-color: hsl(180, 100%, 50%);
+}
+
+.blue {
+    background-color: hsl(240, 100%, 50%);
+}
+
+.linear {
+    background: linear-gradient(30deg, violet, yellow);
+}
+.repeat {
+    background: repeating-linear-gradient(
+        45deg,
+        yellow 0px,
+        yellow 40px,
+        black 40px,
+        black 80px
+      );
+}
+
+.texture {
+    background: url("https://cdn-media-1.freecodecamp.org/imgr/MJAkxbh.png");
+}

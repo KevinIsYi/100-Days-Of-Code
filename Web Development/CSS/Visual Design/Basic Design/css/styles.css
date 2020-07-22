@@ -72,3 +72,8 @@ h1 {
     right: 150px;
     z-index: 2;
 }
+
+.center {
+    background-color: blue;
+    margin: auto;
+}

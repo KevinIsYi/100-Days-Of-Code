@@ -1,0 +1,19 @@
+.ball {
+    position: fixed;
+    top: 150px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.transform {
+    background-color: blue;
+}
+.transform2 {
+    background-color: red;
+    left: 300px;
+}
+
+.transform2:hover {
+    transform: scale(1.5);
+}
