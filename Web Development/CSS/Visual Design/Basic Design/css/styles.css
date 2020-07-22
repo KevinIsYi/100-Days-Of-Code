@@ -30,3 +30,45 @@ h1 {
     float: left;
     background-color: blue;
 }
+
+.squares {
+    width: 500px;
+    height: 500px;
+}
+
+.first {
+    background-color: yellow;
+    position: relative;
+    left: 100px;
+    top: 100px;
+    z-index: 2;
+}
+.second {
+    background-color: violet;
+    position: relative;
+    left: 200px;
+    bottom: 200px;
+    z-index: 1;
+}
+
+.front {
+    background-color: burlywood;
+    position: relative;
+    bottom: 100px;
+    left: 150px;
+}
+
+.back {
+    background-color: chartreuse;
+    position: absolute;
+    left: 150px;
+    top: 150px;
+    z-index: 1;
+}
+.end {
+    background-color: cyan;
+    position: absolute;
+    top: 150px;
+    right: 150px;
+    z-index: 2;
+}
