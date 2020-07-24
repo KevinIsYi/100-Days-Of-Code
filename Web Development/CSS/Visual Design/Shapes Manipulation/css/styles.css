@@ -17,3 +17,130 @@
 .transform2:hover {
     transform: scale(1.5);
 }
+
+.heart {
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 300px;
+    background-color: pink;
+    width: 150px;
+    height: 150px;
+    transform: rotate(-45deg);
+}
+
+.heart::before {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background-color: pink;
+    width: 150px;
+    height: 150px;
+    left: 75px;
+}
+
+.heart::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background-color: pink;
+    width: 150px;
+    height: 150px;
+    bottom: 75px;
+}
+
+.anim {
+    margin: auto;
+    width: 100px;
+    height: 100px;
+    background-color: black;
+    animation-name: rainbow;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes rainbow {
+    0% {
+        background-color: red;
+    }
+    25% {
+        background-color: blue;
+    }
+    50% {
+        background-color: violet;
+    }
+    75% {
+        background-color: yellow;
+    }
+    100% {
+        background-color: purple;
+    }
+
+}
+
+button {
+    width: 100px;
+    height: 30px;
+    color: black;
+    font-weight: bold;
+    background-color: yellow;
+    border: solid;
+    border-width: 2px;
+}
+
+button:hover {
+    animation-name: buttona;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes buttona {
+    100% {
+        background-color: black;
+        color: yellow;
+        border-color: yellow;
+    }
+}
+
+.movingrect {
+    margin: -250px auto;
+    font-size: 80px;
+    text-align: center;
+    width: 750px;
+    height: 100px;
+    background-color: yellow;
+    border: black;
+    border-width: 5px;
+    border-style: solid;
+    border-radius: 5%;
+    position: relative;
+    animation-name: moving;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes moving {
+    0% {
+        top: -250px;
+    }
+    25% {
+        background-color: blue;
+        top: 250px
+    }
+    50% {
+        background-color: green;
+        top: 500px;
+    }
+    75% {
+        background-color: red;
+        top: 750px;
+    }
+    100% {
+        background-color: purple;
+        top: -250px;
+    }
+}
+
+
