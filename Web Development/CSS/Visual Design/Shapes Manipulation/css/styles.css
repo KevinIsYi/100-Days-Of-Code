@@ -119,6 +119,7 @@ button:hover {
     animation-name: moving;
     animation-duration: 10s;
     animation-iteration-count: infinite;
+    animation-timing-function: linear;
 }
 
 @keyframes moving {
