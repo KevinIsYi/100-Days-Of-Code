@@ -1,0 +1,120 @@
+* {
+    text-align: center;
+}
+
+.grid1 {
+    display: grid;
+    grid-template-columns: 100px 100px; /* Number of columns */ 
+    grid-template-rows: 50px 100px 150px; /* Number of rows */
+    grid-row-gap: 30px;
+}
+
+.grid2 {
+    padding: 10px 0;
+    display: grid;
+    grid-template-columns: 1fr 2fr 3fr 4fr 5fr 6fr;
+    grid-column-gap: 30px;
+}
+
+.grid3 {
+    padding: 10px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px; /* grid-gap: 10px 0px | grid-gap: 0px 10px */
+    justify-items: center;
+    align-items: center;
+}
+
+.grid4 {
+    padding: 10px 0;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.grid5 {
+    padding: 10px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.grid6 {
+    padding: 10px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-gap: 10px;
+    grid-template-areas:
+      "header header header"
+      "advert content content"
+      "footer footer footer";
+}
+
+.grid7 {
+    padding: 10px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.grid8 {
+    padding: 10px 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.grid9 {
+    padding: 10px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+}
+
+.grid10 {
+    padding: 10px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+}
+
+.one {
+    background-color: skyblue;
+}
+
+.two {
+    background-color: tomato;
+}
+
+.three {
+    background-color: yellowgreen;
+}
+
+.four {
+    background-color: seagreen;
+}
+
+.five {
+    background-color: springgreen;
+}
+
+.six {
+    background-color: violet;
+}
+
+.sixs {
+    background-color: violet;
+    grid-column: 1 / 3;
+}
+
+.sixc {
+    background-color: violet;
+    grid-row: 1 / 3;
+}
+
+.sixa {
+    background-color: violet;
+    grid-area: footer;
+}
+
+.sixga {
+    background-color: violet;
+    grid-area: 3/1/4/4; /* horizontal line to start at / vertical line to start at / horizontal line to end at / vertical line to end at */
+}
