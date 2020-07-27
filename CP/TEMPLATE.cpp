@@ -6,6 +6,11 @@ using namespace std;
 #define allr(x) x.rbegin(), x.rend()
 
 template <typename T>
+T ceil(T a, T b) {
+	return (a + b - 1) / b;
+}
+
+template <typename T>
 T GCD(T a, T b) {
 	return b ? GCD(b, a % b) : a;
 }
