@@ -36,8 +36,6 @@ fieldset {
     right: 0;
     bottom: 0;
     text-align: center;
-    width: 25%;
-    height: 66%;
     background: rgba(255, 255, 255, 0.7);
     border-style: none;
     border-radius: 5%;
@@ -119,4 +117,16 @@ fieldset label {
 
 .createAcc strong {
     padding-left: 10px;
+}
+
+
+@media(min-width: 200px) {
+    fieldset {
+        width: 80%;
+        height: 40%;
+        min-width: 350px;
+        min-height: 500px;
+        max-width: 400px;
+        max-height: 500px;
+    }
 }
