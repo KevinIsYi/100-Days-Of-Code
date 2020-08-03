@@ -81,3 +81,111 @@ primerLi.removeAttribute("href");
 console.log(primerLi);
 console.log(element);
 */
+
+/*
+// Click
+function prueba(e) {
+    e.preventDefault();
+    let element;
+
+    element = e.target;
+    element = e.target.className;
+    element = e.target.innerText;
+    e.target.innerText = "Nuevo Texto";
+    console.log(element);
+    alert("Ahsuuu");
+}
+
+document.querySelector("#submit-buscador").addEventListener("click", prueba);
+*/
+
+/*
+const header = document.querySelector("#encabezado");
+const enlaces = document.querySelectorAll(".enlace");
+const boton = document.querySelector("#vaciar-carrito");
+*/
+
+//clic 
+//boton.addEventListener("click", getEvent);
+
+//doble clic
+//boton.addEventListener('dblclick', getEvent);
+
+//mouse enter (hover on buttom)
+//boton.addEventListener("mouseenter", getEvent);
+
+//mouse leave
+//boton.addEventListener("mouseleave", getEvent);
+
+// mouse over
+//boton.addEventListener("mouseover", getEvent);
+
+// mouse out
+//boton.addEventListener("mouseout", getEvent);
+
+//mouse down 
+//boton.addEventListener("mousedown", getEvent);
+
+// mose up (when unpress)
+//boton.addEventListener("mouseup", getEvent);
+
+
+// movements inside page
+//header.addEventListener("mousemove", getEvent);
+
+//const busq = document.querySelector("#buscador");
+//busq.addEventListener("keydown", getEvent); except last pressed key
+//busq.addEventListener("keyup", getEvent); after pressing key
+//busq.addEventListener("keypress", getEvent); all word
+//busq.addEventListener("focus", getEvent); //When item is selected
+//busq.addEventListener("blur", getEvent); // When you stop selecting item
+//busq.addEventListener("cut", getEvent); // when user uses ctrl + c
+//busq.addEventListener("copy", getEvent);
+//busq.addEventListener("paste", getEvent);
+//busq.addEventListener("input", getEvent);
+//busq.addEventListener("change", getEvent); // when selecting an option and you change it
+/*
+function getEvent(e) {
+    //console.log(busq.value);
+    console.log(`Evento: ${e.type}`);
+}
+*/
+/*
+// event bubbling
+const card = document.querySelector(".card");
+const info = document.querySelector(".info-card");
+const addCar = document.querySelector(".agregar-carrito");
+
+card.addEventListener("click", function(e) {
+    console.log("Click en card");
+    e.stopPropagation();
+});
+
+info.addEventListener("click", function(e) {
+    console.log("Click en infocard");
+    e.stopPropagation();
+});
+
+addCar.addEventListener("click", function(e) {
+    console.log("Click en addCar");
+    e.stopPropagation();
+});
+*/
+
+/*
+// delegation
+document.body.addEventListener("click", deleteElement);
+function deleteElement(e) {
+    e.preventDefault(); 
+    console.log(e.target.classList);
+    console.log("Click");
+
+    if (e.target.classList.contains("borrar-curso")) {
+        console.log("La cotiene perro");
+        e.target.parentElement.parentElement.remove();
+    }
+    else {
+        console.log("Nel");
+    }
+}
+*/
