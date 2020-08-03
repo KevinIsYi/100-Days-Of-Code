@@ -189,3 +189,16 @@ function deleteElement(e) {
     }
 }
 */
+
+// Local Storage
+//localStorage.setItem("name", "kevin"); // deletes everything when cleaning caché or manual cleaning
+
+//sesion storage
+//sessionStorage.setItem("nombre", "kevin"); // it cleans when closing browser
+
+
+//delete
+//localStorage.removeItem("name");
+//console.log(localStorage.getItem("name"));
+
+//localStorage.clear(); // cleans up local storage
