@@ -6,6 +6,13 @@ html {
     box-sizing: inherit;
 }
 
+:root {
+    --box-size: 60px;
+    --longer-keys: 90px;
+    --longest-keys: 120px;
+    --space-bar: 360px;
+}
+
 .clearfix:before,
 .clearfix:after {
   content: " ";
@@ -39,9 +46,9 @@ p {
 
 .keyboard {
     position: absolute;
-    top: 50%;
+    top: 65%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -35%);
 }
 
 .site-header {
@@ -55,8 +62,8 @@ p {
 }
 
 .box {
-    width: 75px;
-    height: 75px;
+    width: var(--box-size);
+    height: var(--box-size);
     border-style: solid;
     background-color: white;
     border-width: 1px;
@@ -65,20 +72,28 @@ p {
     text-align: center;
 }
 
-.spacebar {
-    width: 450px;
+.on-click-animation {
+    animation-name: box-color-animation;
+    animation-duration: 0.2s;
+    animation-timing-function: ease-in-out;
 }
 
-.cap-box {
-    width: 150px;
+@keyframes box-color-animation {
+    50% {
+        background-color: #EEE;
+    }
+}
+
+.spacebar {
+    width: var(--space-bar);
 }
 
 .longer-key {
-    width: 112.5px;
+    width: var(--longer-keys);
 }
 
 .longest-key {
-    width: 150px;
+    width: var(--longest-keys);
 }
 
 .center {
