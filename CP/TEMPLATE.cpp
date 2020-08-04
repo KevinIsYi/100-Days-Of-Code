@@ -4,6 +4,7 @@ using namespace std;
 
 #define all(x) x.begin(), x.end()
 #define allr(x) x.rbegin(), x.rend()
+#define pb(x) push_back(x)
 
 template <typename T>
 T ceil(T a, T b) {
@@ -12,14 +13,14 @@ T ceil(T a, T b) {
 
 template <typename T>
 T gcd(T a, T b) {
-	return b ? GCD(b, a % b) : a;
+	return b ? gcd(b, a % b) : a;
 }
 
 long long lcd(long long a, long long b) {
 	if (a < b) {
 		swap(a, b);
 	}
-	a /= GCD(a, b);
+	a /= gcd(a, b);
 	return a * b;
 }
 
