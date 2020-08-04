@@ -99,6 +99,9 @@ function prueba(e) {
 document.querySelector("#submit-buscador").addEventListener("click", prueba);
 */
 
+const body = document.querySelector("body");
+body.addEventListener("keyup", getEvent);
+
 /*
 const header = document.querySelector("#encabezado");
 const enlaces = document.querySelectorAll(".enlace");
@@ -133,6 +136,8 @@ const boton = document.querySelector("#vaciar-carrito");
 // movements inside page
 //header.addEventListener("mousemove", getEvent);
 
+
+
 //const busq = document.querySelector("#buscador");
 //busq.addEventListener("keydown", getEvent); except last pressed key
 //busq.addEventListener("keyup", getEvent); after pressing key
@@ -144,12 +149,16 @@ const boton = document.querySelector("#vaciar-carrito");
 //busq.addEventListener("paste", getEvent);
 //busq.addEventListener("input", getEvent);
 //busq.addEventListener("change", getEvent); // when selecting an option and you change it
-/*
+
 function getEvent(e) {
     //console.log(busq.value);
+    console.log(e);
+    console.log(e.code);
+    console.log(e.keyCode);
+    console.log(e.key);
     console.log(`Evento: ${e.type}`);
 }
-*/
+
 /*
 // event bubbling
 const card = document.querySelector(".card");
