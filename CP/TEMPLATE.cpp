@@ -11,11 +11,11 @@ T ceil(T a, T b) {
 }
 
 template <typename T>
-T GCD(T a, T b) {
+T gcd(T a, T b) {
 	return b ? GCD(b, a % b) : a;
 }
 
-long long LCD(long long a, long long b) {
+long long lcd(long long a, long long b) {
 	if (a < b) {
 		swap(a, b);
 	}
@@ -64,6 +64,7 @@ bool isPrime(T n) {
 int main() {
 	ios::sync_with_stdio(0);
 	cin.tie(0);
+	
 	
 	return 0;
 }
