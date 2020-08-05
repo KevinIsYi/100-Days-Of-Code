@@ -1,54 +1,34 @@
-const body = document.querySelector("body");
-body.addEventListener("keydown", getEvent);
-body.addEventListener("keyup", deleteClass);
+
+const keysId = {20: "#caps", 32: "#spacebar", 65: "#a", 66: "#b", 67: "#c", 
+    68: "#d", 69: "#e", 70: "#f", 71: "#g", 72: "#h", 73: "#i", 74: "#j", 75: "#k", 
+    76: "#l", 77: "#m", 78: "#n", 79: "#o", 80: "#p", 81: "#q", 82: "#r", 83: "#s", 
+    84: "#t", 85: "#u", 86: "#v", 87: "#w", 88: "#x", 89: "#y", 90: "#z"};
 
 function deleteClass(e) {
-
-    const dict = {1: 20, 2: 32, 3: 65, 4: 66, 5: 67, 6: 68, 7: 69, 8: 70, 
-        9: 71, 10: 72, 11: 73, 12: 74, 13: 75, 
-        14: 76, 15: 77, 16: 78, 17: 79, 18: 80, 
-        19: 81, 20: 82, 21: 83, 22: 84, 23: 85, 24: 86, 
-        25: 87, 26: 88, 27: 89, 28: 90};
-
-    console.log(Object.keys(dict).length);
-
     
-    let keycode = e.keyCode;
+    let keycode = e.keyCode, value = keysId[keycode];
 
-    let hola = "hola";
-    console.log(hola);
-    console.log(keycode);
-
-    console.log(`Esto vale keycode: ${keycode}`);
-
-    if (keycode == 81) {
-        let key = document.querySelector("#q");
-        key.classList.remove("on-click-animation");
-        console.log(key);
+    if (value !== undefined) {
+        let pressedKey = document.querySelector(value);
+        pressedKey.classList.remove("on-click-animation");
     }
 }
 
-function getEvent(e) {
-    //console.log(busq.value);
-    let keycode = e.keyCode;
+function receiveEvent(e) {
 
-    console.log(`Este es el codigo: ${keycode}`);
+    let keycode = e.keyCode, value = keysId[keycode];
 
-    switch(keycode) {
-        case 81:
-            let key = document.querySelector("#q");
-            
-            key.classList.add("on-click-animation");
-            
-            console.log("Presionaste la q, perro");
-            
-            console.log(document.querySelector("#q"));
-            break;
+    if (value !== undefined) {
+        let pressedKey = document.querySelector(value);
+        pressedKey.classList.add("on-click-animation");
     }
-
-    console.log(e);
-    console.log(e.code);
-    console.log(e.keyCode);
-    console.log(e.key);
-    console.log(`Evento: ${e.type}`);
 }
+
+function eventListener() {
+    const body = document.querySelector("body");
+
+    body.addEventListener("keydown", receiveEvent);
+    body.addEventListener("keyup", deleteClass);
+}
+
+eventListener();

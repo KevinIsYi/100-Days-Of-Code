@@ -74,13 +74,14 @@ p {
 
 .on-click-animation {
     animation-name: box-color-animation;
-    animation-duration: 0.2s;
-    animation-timing-function: ease-in-out;
+    animation-duration: 0.1s;
 }
 
 @keyframes box-color-animation {
-    50% {
-        background-color: #EEE;
+    100% {
+        background-color: black;
+        color: white;
+        border-color: black;
     }
 }
 
