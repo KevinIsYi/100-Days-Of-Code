@@ -1,0 +1,91 @@
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+:root {
+    --yellow: yellow;
+    --blue: blue;
+    --red: red; 
+}
+
+body {
+    background: linear-gradient(180deg, cyan, lightcyan) fixed;
+}
+
+i {
+    font-size: 150px;
+    color: var(--yellow);
+}
+
+h1 {
+    text-transform: uppercase;
+    font-family: 'Oswald', sans-serif;
+}
+
+p {
+    font-family: 'Heebo', sans-serif;
+}
+
+h1::after {
+    content: "";
+    background-color: var(--yellow);
+    display: block;
+    justify-self: center;
+    margin-top: 15px;
+    width: 100%;
+    height: 5px;
+}
+
+.principal {
+    position: absolute;
+    margin: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 50px;
+    text-align: center;
+}
+
+.each {
+    background-color: white;
+    margin: 10px;
+    padding: 25px 25px 0 25px;
+    width: 250px;
+    height: 90%;
+    border-radius: 5px;
+    box-shadow: 5px 0 5px 5px gray,
+                -5px 0 5px 5px gray,
+                0 5px 5px 5px gray,
+                0 -5px 5px 5px gray;
+    transition: ease-in-out 0.1s;
+    align-self: center;
+}
+
+.each:nth-child(2) {
+    height: 95%;
+}
+
+.each:hover {
+    transform: scale(1.1);
+    box-shadow: 5px 0 5px 5px blue,
+                -5px 0 5px 5px blue, 
+                0 5px 5px 5px blue, 
+                0 -5px 5px 5px blue;
+}
+
+.each:nth-child(2):hover {
+    box-shadow: 5px 0 5px 5px red, 
+                -5px 0 5px 5px red, 
+                0 5px 5px 5px red, 
+                0 -5px 5px 5px red;
+}
