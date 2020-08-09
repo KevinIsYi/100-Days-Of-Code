@@ -1,0 +1,8 @@
+body {
+    background-color: yellow;
+}
+
+.sort {
+    display: flex;
+    justify-content: center;
+}
