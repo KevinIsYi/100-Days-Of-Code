@@ -1,84 +1,47 @@
-function fillArray(arr) {
-    const size = screen.height;
+function createBars(arr) {
+    const main = document.querySelector("body"), width = screen.width, len = arr.length;
+    let each;
 
-    for (let i = 0 ; i < 100 ; ++i) {
+    arr.forEach((number, index) => {
+        each = document.createElement("div");
+        each.innerHTML = `<div id="idn${index}" class="bar" style="height: ${number}px; width: ${width / len}px";></div>`;
+        main.appendChild(each);
+    });
+}
+
+function fillArray(arr) {
+    const size = screen.height - 200;
+
+    for (let i = 0 ; i < 10 ; ++i) {
         arr.push(Math.floor(Math.random() * size) + 1);
     }
 }
 
-function printInScreen(arr) {
-    const div = document.querySelector(".sort");
-    let eachElement = document.createElement("div"), width = screen.width
-    width /= arr.length;
-
-    arr.forEach((element, index) => {
-        eachElement = document.createElement("div");
-        eachElement.id = "id" + index.toString(10);
-        eachElement.style.width = width.toString(10) + "%";
-        eachElement.style.backgroundColor = "black";
-        eachElement.style.height = element.toString(10) + "px";
-        div.appendChild(eachElement);
-    });
-}
-
-function swap(arr, a, b) {
-
-    console.log("Llamada");
-
-    let aSelect = document.querySelector(`#id${a}`),
-        bSelect = document.querySelector(`#id${b}`),
-        aux;
-
-    aux = aSelect.style.height;
-
-    console.log(`Esto es aux: ${aux}`);
-
-    console.log(aSelect);
-    console.log(bSelect);
-
-    console.log("Vamos a cambiar\n");
-
-    console.log(`Esto es aux: ${aux}`);
-
-    aSelect.style.height = bSelect.style.height;
-    bSelect.style.height = aux;
-
-    console.log(aSelect);
-    console.log(bSelect);
-
-    aux = arr[a];
-    arr[a] = arr[b];
-    arr[b] = aux;
-
-}
-
-function bubbleSort(arr) {
-
-    let flag, i = arr.length - 1, j;
-
-    do {
-        flag = false;
-        j = 0;
-
-        while(j < i) {
-            if (arr[j] > arr[j + 1]) {
-                swap(j, j + 1);
-                flag = true;
-            }
-            ++j;
-        }
-        --i;
-    } while(flag);
-}
-
 function main() {
-    let arr = [];       
-
+    let arr = [];
     fillArray(arr);
-    printInScreen(arr);
+    createBars(arr);
 
-    bubbleSort(arr);
-    console.log(arr);
+    let uno = document.getElementById("idn0"),
+        dos = document.getElementById("idn1");
+
+    console.log(uno);
+    console.log(dos);
 }
 
 main();
+/*
+let value, count = 0;
+
+let varName = function() {
+    if (count <= 10) {
+        console.log(`Vuelta: ${count}`);
+        ++count
+    }
+    else {
+        clearInterval(value);
+    }
+}
+
+value = setInterval(varName, 500);
+*/

@@ -1,9 +1,6 @@
 body {
-    background-color: yellow;
-    height: 100%;
-}
-
-.sort {
     display: flex;
-    justify-content: center;
+}
+.bar {
+    background-color: black;
 }
