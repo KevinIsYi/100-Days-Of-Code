@@ -1,3 +1,4 @@
+
 function createBars(arr) {
     const main = document.querySelector("body"), width = screen.width, len = arr.length;
     let each;
@@ -12,8 +13,31 @@ function createBars(arr) {
 function fillArray(arr) {
     const size = screen.height - 200;
 
-    for (let i = 0 ; i < 10 ; ++i) {
+    for (let i = 0 ; i < 1000 ; ++i) {
         arr.push(Math.floor(Math.random() * size) + 1);
+    }
+}
+
+
+function bubbleSort(arr) {
+
+    for (let i = 0 ; i < arr.length ; ++i) {
+        setTimeout(() => {
+            for (let j = 1 ; j < arr.length ; ++j) {
+                if (arr[j] < arr[j - 1]) {
+
+                    let first = document.querySelector(`#idn${j}`),
+                        second = document.querySelector(`#idn${j - 1}`),
+                        aux = arr[j];
+
+                    first.style.height = `${arr[j - 1]}px`;
+                    second.style.height = `${arr[j]}px`;
+
+                    arr[j] = arr[j - 1];
+                    arr[j - 1] = aux;
+                }
+            }
+        }, 10 * i);
     }
 }
 
@@ -21,27 +45,8 @@ function main() {
     let arr = [];
     fillArray(arr);
     createBars(arr);
-
-    let uno = document.getElementById("idn0"),
-        dos = document.getElementById("idn1");
-
-    console.log(uno);
-    console.log(dos);
+    bubbleSort(arr);
+    
 }
 
 main();
-/*
-let value, count = 0;
-
-let varName = function() {
-    if (count <= 10) {
-        console.log(`Vuelta: ${count}`);
-        ++count
-    }
-    else {
-        clearInterval(value);
-    }
-}
-
-value = setInterval(varName, 500);
-*/
