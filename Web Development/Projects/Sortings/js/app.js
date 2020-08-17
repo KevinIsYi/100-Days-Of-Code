@@ -18,7 +18,6 @@ function fillArray(arr) {
     }
 }
 
-
 function bubbleSort(arr) {
 
     for (let i = 0 ; i < arr.length ; ++i) {
@@ -94,13 +93,36 @@ function insertionSort(arr) {
     }
 }
 
+function shellSort(arr) {
+
+    let factor = 0.85;
+
+    for (let i = Math.round(arr.length * factor), j = 0 ; i > 0 ; i = Math.floor(i * factor), ++j) {
+        setTimeout(() => {
+            for (let k = 0 ; k < arr.length - i ; ++k) {
+                if (arr[k] > arr[k + i]) {
+                    let first = document.querySelector(`#idn${k}`),
+                        second = document.querySelector(`#idn${k + i}`),
+                        aux = arr[k];
+
+                    first.style.height = `${arr[k + i]}px`;
+                    second.style.height = `${arr[k]}px`;
+                    arr[k] = arr[k + i];
+                    arr[k + i] = aux;
+                }
+            }
+        }, 10 * j);      
+    }
+}
+
 function main() {
     let arr = [];
     fillArray(arr);
     createBars(arr);
-    bubbleSort(arr);
+    //bubbleSort(arr);
     //selectionSort(arr);
     //insertionSort(arr);
+    //shellSort(arr);
 }
 
 main();
