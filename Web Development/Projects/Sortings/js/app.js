@@ -13,9 +13,10 @@ function createBars(arr) {
 function fillArray(arr) {
     const size = screen.height - 200;
 
-    for (let i = 0 ; i < 1000 ; ++i) {
+    for (let i = 0 ; i < 10 ; ++i) {
         arr.push(Math.floor(Math.random() * size) + 1);
     }
+    console.log(`Original: ${arr}`);
 }
 
 function bubbleSort(arr) {
@@ -115,14 +116,78 @@ function shellSort(arr) {
     }
 }
 
+function mergeSort(left, right)  {
+	var i = 0;
+	var j = 0;
+	var results = [];
+
+	while (i < left.length || j < right.length) {
+		if (i === left.length) {
+			// j is the only index left_part
+			results.push(right[j]);
+			j++;
+		} 
+        else if (j === right.length || left[i] <= right[j]) {
+			results.push(left[i]);
+			i++;
+        } 
+        else {
+			results.push(right[j]);
+			j++;
+		}
+	}
+	return results;
+}
+
+function sortMerge(array) {
+    if (array.length == 1) {
+        return array;
+    }
+
+    let middle = Math.floor(array.length / 2),
+        right = sortMerge(array.slice(0, middle));
+        left = sortMerge(array.slice(middle)),
+        aux = [],
+        i = 0,
+        j = 0;
+
+    while (i < right.length && j < left.length) {
+        if (right[i] < left[j]) {
+            aux.push(right[i]);
+            ++i;
+        }
+        else {
+            aux.push(left[j]);
+            ++j;
+        }
+    }
+
+    while (i < right.length) {
+        aux.push(right[i]);
+        ++i;
+    }
+    while (j < left.length) {
+        aux.push(left[j]);
+        ++j;
+    }
+
+    return aux;
+}
+
+
 function main() {
-    let arr = [];
-    fillArray(arr);
-    createBars(arr);
+    
+    let arr = [5, 3, 1, 9, 7, 2, 8, 1, 11, 4];
+
+    console.log(`Original: ${arr}`);
+    //fillArray(arr);
+    //createBars(arr);
     //bubbleSort(arr);
     //selectionSort(arr);
     //insertionSort(arr);
     //shellSort(arr);
+    console.log(sortMerge(arr));
+    console.log(arr);
 }
 
 main();
