@@ -5,7 +5,7 @@ using namespace std;
 #define all(x) x.begin(), x.end()
 #define allr(x) x.rbegin(), x.rend()
 #define pb(x) push_back(x)
-#define mp(x, y) make_pair(x, y);
+#define mp(x, y) make_pair(x, y)
 
 template <typename T>
 T ceil(T a, T b) {
