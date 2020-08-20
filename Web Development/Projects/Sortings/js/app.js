@@ -116,68 +116,69 @@ function shellSort(arr) {
     }
 }
 
-function mergeSort(left, right)  {
-	var i = 0;
-	var j = 0;
-	var results = [];
 
-	while (i < left.length || j < right.length) {
-		if (i === left.length) {
-			// j is the only index left_part
-			results.push(right[j]);
-			j++;
-		} 
-        else if (j === right.length || left[i] <= right[j]) {
-			results.push(left[i]);
-			i++;
-        } 
-        else {
-			results.push(right[j]);
-			j++;
-		}
-	}
-	return results;
+// Merge algorithm taken from YT channel 'Clément Mihailescu'
+// Video: Sorting Visualizer Tutorial (software engineering project)
+// Link: https://www.youtube.com/watch?v=pFXYym4Wbkc
+
+function mergeSort(arr) {
+    const animations = [];
+    if (arr.length <= 1) {
+        return arr;
+    }
+    const auxArr = arr.slice();
+    mergeSortHelper(arr, 0, arr.length - 1, auxArr, animations);
+    return animations;
 }
 
-function sortMerge(array) {
-    if (array.length == 1) {
-        return array;
+function mergeSortHelper(mainArray, startIndex, endIndex, auxArray, animations) {
+    if (startIndex === endIndex) {
+        return;
     }
-
-    let middle = Math.floor(array.length / 2),
-        right = sortMerge(array.slice(0, middle));
-        left = sortMerge(array.slice(middle)),
-        aux = [],
-        i = 0,
-        j = 0;
-
-    while (i < right.length && j < left.length) {
-        if (right[i] < left[j]) {
-            aux.push(right[i]);
-            ++i;
-        }
-        else {
-            aux.push(left[j]);
-            ++j;
-        }
-    }
-
-    while (i < right.length) {
-        aux.push(right[i]);
-        ++i;
-    }
-    while (j < left.length) {
-        aux.push(left[j]);
-        ++j;
-    }
-
-    return aux;
+    const middleIndex = Math.floor((startIndex + endIndex) / 2);
+    mergeSortHelper(auxArray, startIndex, middleIndex, mainArray, animations);
+    mergeSortHelper(auxArray, middleIndex + 1, endIndex, mainArray, animations);
+    doMerge(mainArray, startIndex, middleIndex, endIndex, auxArray, animations);
 }
 
+function doMerge(mainArray, startIndex, middleIndex, endIndex, auxArray, animations) {
+    let k = startIndex,
+        i = startIndex,
+        j = middleIndex + 1;
+
+    while(i <= middleIndex && j <= endIndex) {
+        
+        animations.push([i, j]);
+        animations.push([i, j]);
+
+        if (auxArray[i] <= auxArray[j]) {
+            animations.push([k, auxArray[i]]);
+            mainArray[k++] = auxArray[i++];
+        }
+        else {
+            animations.push([k, auxArray[j]]);
+            mainArray[k++] = auxArray[j++];
+        }
+    }
+
+    while(i <= middleIndex) {
+        animations.push([i, i]);
+        animations.push([i, i]);
+        animations.push([k, auxArray[i]]);
+        mainArray[k++] = auxArray[i++];
+    }
+    while(j <= endIndex) {
+        animations.push([j, j]);
+        animations.push([j, j]);
+        animations.push([k, auxArray[j]]);
+
+        mainArray[k++] = auxArray[j++];
+    }
+}
 
 function main() {
     
-    let arr = [5, 3, 1, 9, 7, 2, 8, 1, 11, 4];
+    let arr = [5, 3, 1, 9, 7, 15];
 
     console.log(`Original: ${arr}`);
     //fillArray(arr);
@@ -186,8 +187,9 @@ function main() {
     //selectionSort(arr);
     //insertionSort(arr);
     //shellSort(arr);
-    console.log(sortMerge(arr));
+    console.log(mergeSort(arr));
     console.log(arr);
+    //console.log(arr);
 }
 
 main();
