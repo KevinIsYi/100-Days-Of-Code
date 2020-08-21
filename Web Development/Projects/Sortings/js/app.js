@@ -12,11 +12,11 @@ function createBars(arr) {
 
 function fillArray(arr) {
     const size = screen.height - 200;
+    
 
-    for (let i = 0 ; i < 10 ; ++i) {
+    for (let i = 0 ; i < 1000 ; ++i) {
         arr.push(Math.floor(Math.random() * size) + 1);
     }
-    console.log(`Original: ${arr}`);
 }
 
 function bubbleSort(arr) {
@@ -165,6 +165,7 @@ function doMerge(mainArray, startIndex, middleIndex, endIndex, auxArray, animati
         animations.push([i, i]);
         animations.push([i, i]);
         animations.push([k, auxArray[i]]);
+
         mainArray[k++] = auxArray[i++];
     }
     while(j <= endIndex) {
@@ -176,20 +177,41 @@ function doMerge(mainArray, startIndex, middleIndex, endIndex, auxArray, animati
     }
 }
 
+function doMergeAnimation(animations) {
+    
+    let changeColor, color;
+
+    for (let i = 0 ; i < animations.length ; ++i) {
+        setTimeout(() => {
+            changeColor = i % 3 !== 2;
+
+            if (changeColor) {
+                const [firstIndex, secondIndex] = animations[i];
+                color = (i % 3 === 0 ? 'red' : 'black');
+
+                document.querySelector(`#idn${firstIndex}`).style.backgroundColor = color;
+                document.querySelector(`#idn${secondIndex}`).style.backgroundColor = color;
+            }
+            else {
+                const [barOne, newHeight] = animations[i];
+                document.querySelector(`#idn${barOne}`).style.height = `${newHeight}px`;
+            }
+        }, i * 1);
+    }
+}
+
 function main() {
     
-    let arr = [5, 3, 1, 9, 7, 15];
+    let arr = [];
 
-    console.log(`Original: ${arr}`);
-    //fillArray(arr);
-    //createBars(arr);
+    fillArray(arr);
+    createBars(arr);
     //bubbleSort(arr);
     //selectionSort(arr);
     //insertionSort(arr);
     //shellSort(arr);
-    console.log(mergeSort(arr));
-    console.log(arr);
-    //console.log(arr);
+    doMergeAnimation(mergeSort(arr));
+    
 }
 
 main();
