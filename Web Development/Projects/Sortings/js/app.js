@@ -12,7 +12,7 @@ function createBars(arr) {
 function fillArray(arr) {
     const size = screen.height - 200;
 
-    for (let i = 0 ; i < 500 ; ++i) {
+    for (let i = 0 ; i < 1000 ; ++i) {
         arr.push(Math.floor(Math.random() * size) + 1);
     }
 }
@@ -29,7 +29,7 @@ function swapingAnimation(animations) {
 
             bars[firstIndex].style.height = `${second}`;
             bars[secondIndex].style.height = `${first}`;
-        }, i * 0.1);
+        }, i * 10);
     }
 }
 
@@ -37,12 +37,10 @@ function bubbleSort(arr) {
 
     const animations = [];
 
-    for (let i = 0, swap = true ; i < arr.length && swap; ++i) {
-        swap = false;
+    for (let i = 0 ; i < arr.length; ++i) {
         for (let j = 1 ; j < arr.length ; ++j) {
             if (arr[j] < arr[j - 1]) {
                 animations.push([j, j - 1]);
-                swap = true;
 
                 const aux = arr[j];
                 arr[j] = arr[j - 1];
@@ -201,7 +199,7 @@ function mergeSort(arr) {
     }
     const auxArr = arr.slice();
     mergeSortHelper(arr, 0, arr.length - 1, auxArr, animations);
-    return animations;
+    doMergeAnimation(animations);
 }
 
 function mergeSortHelper(mainArray, startIndex, endIndex, auxArray, animations) {
@@ -260,31 +258,73 @@ function doMergeAnimation(animations) {
 
             if (changeColor) {
                 const [firstIndex, secondIndex] = animations[i];
-                color = (i % 3 === 0 ? 'red' : 'black');
+                color = (i % 3 === 0 ? 'black' : 'black');
 
                 document.getElementById(`idn${firstIndex}`).style.backgroundColor = color;
                 document.getElementById(`idn${secondIndex}`).style.backgroundColor = color;
-
             }
             else {
                 const [barOne, newHeight] = animations[i];
                 document.getElementById(`idn${barOne}`).style.height = `${newHeight}px`;
             }
-        }, i * 1);
+        }, i * 0.5);
     }
+}
+
+function quickSort(arr) {
+    const animations = [];
+    quickSortHelper(animations, arr, 0, arr.length - 1);
+    swapingAnimation(animations);
+}
+
+function quickSortHelper(animations, array, leftIndex, rightIndex) {
+    if (leftIndex >= rightIndex){
+        return;
+    }
+
+    let i = leftIndex, j = rightIndex;
+
+    while(i < j){
+        while (i < j && array[i] <= array[rightIndex]){
+            i++;
+        }
+
+        while (i < j && array[j] >= array[rightIndex])  {
+            j--;
+        }
+
+        if (i != j) {
+            animations.push([i, j]);
+            const aux = array[i];
+            array[i] = array[j];
+            array[j] = aux;
+        }
+    }
+
+    if (i != rightIndex) {
+        animations.push([i, rightIndex]);
+        const aux = array[i];
+        array[i] = array[rightIndex];
+        array[rightIndex] = aux;
+    }
+
+    quickSortHelper(animations, array, leftIndex, i - 1);
+    quickSortHelper(animations, array, i + 1, rightIndex);
+    
 }
 
 function main() {
     
     let arr = [];
 
-    //fillArray(arr);
-    //createBars(arr);
+    fillArray(arr);
+    createBars(arr);
     //bubbleSort(arr);
     //selectionSort(arr);
     //insertionSort(arr);
     //shellSort(arr);
-    //doMergeAnimation(mergeSort(arr));
+    //mergeSort(arr);
+    //quickSort(arr);
 }
 
 main();
