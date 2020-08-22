@@ -317,13 +317,13 @@ function main() {
     
     let arr = [];
 
-    fillArray(arr);
-    createBars(arr);
+    //sfillArray(arr);
+    //createBars(arr);
     //bubbleSort(arr);
     //selectionSort(arr);
     //insertionSort(arr);
     //shellSort(arr);
-    mergeSort(arr);
+    //mergeSort(arr);
     //quickSort(arr);
 }
 

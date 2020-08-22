@@ -1,5 +1,20 @@
-body {
+:root {
+    --lobster: 'Lobster', cursive;
+}
+
+/* More Buttoms are going to be here, styles are predefined */
+.webSite-header {
     display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom-style: solid;
+    border-bottom-width: 5px;
+    box-shadow: 0 2px 5px black;
+}
+
+.main-text {
+    font-family: var(--lobster);
+    font-size: 100px;
 }
 .bar {
     background-color: black;
