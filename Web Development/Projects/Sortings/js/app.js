@@ -258,7 +258,7 @@ function doMergeAnimation(animations) {
 
             if (changeColor) {
                 const [firstIndex, secondIndex] = animations[i];
-                color = (i % 3 === 0 ? 'black' : 'black');
+                color = (i % 3 === 0 ? 'blue' : 'black');
 
                 document.getElementById(`idn${firstIndex}`).style.backgroundColor = color;
                 document.getElementById(`idn${secondIndex}`).style.backgroundColor = color;
@@ -267,7 +267,7 @@ function doMergeAnimation(animations) {
                 const [barOne, newHeight] = animations[i];
                 document.getElementById(`idn${barOne}`).style.height = `${newHeight}px`;
             }
-        }, i * 0.5);
+        }, i * 1);
     }
 }
 
@@ -323,7 +323,7 @@ function main() {
     //selectionSort(arr);
     //insertionSort(arr);
     //shellSort(arr);
-    //mergeSort(arr);
+    mergeSort(arr);
     //quickSort(arr);
 }
 
