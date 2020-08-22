@@ -16,6 +16,21 @@
     font-family: var(--lobster);
     font-size: 100px;
 }
-.bar {
-    background-color: black;
+
+.container {
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.bars {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 50px;
+}
+
+.each-bar {
+    background-color: salmon;
+    margin: 0 1px;
 }

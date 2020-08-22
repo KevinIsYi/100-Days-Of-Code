@@ -1,25 +1,30 @@
 function createBars(arr) {
-    const main = document.querySelector("body"), width = screen.width, len = arr.length;
+    const bars = document.querySelector(".bars"),
+        width = screen.width * 0.8 - 250, 
+        len = arr.length;
     let each;
 
-    arr.forEach((number, index) => {
+    arr.forEach(number => {
         each = document.createElement("div");
-        each.innerHTML = `<div id="idn${index}" class="bar" style="height: ${number}px; width: ${width / len}px"></div>`;
-        main.appendChild(each);
+        each.classList.add("each-bar");
+        each.style.height = `${number}px`;
+        each.style.width = `${width / len}px`;
+
+        bars.appendChild(each);
     });
 }
 
 function fillArray(arr) {
     const size = screen.height - 200;
 
-    for (let i = 0 ; i < 1000 ; ++i) {
+    for (let i = 0 ; i < 250 ; ++i) {
         arr.push(Math.floor(Math.random() * size) + 1);
     }
 }
 
 function swapingAnimation(animations) {
 
-    const bars = document.getElementsByClassName("bar");
+    const bars = document.getElementsByClassName("each-bar");
     
     for (let i = 0 ; i < animations.length ; ++i) {
         setTimeout(() => {
@@ -29,7 +34,8 @@ function swapingAnimation(animations) {
 
             bars[firstIndex].style.height = `${second}`;
             bars[secondIndex].style.height = `${first}`;
-        }, i * 10);
+
+        }, i * 5);
     }
 }
 
@@ -77,7 +83,7 @@ function selectionSort(arr) {
 function insertionSort(arr) {
 
     let aux, j;
-    const bars = document.getElementsByClassName("bar");
+    const bars = document.getElementsByClassName("each-bar");
 
     for (let i = 1 ; i < arr.length ; ++i) {
         setTimeout(() => {
@@ -254,18 +260,19 @@ function doMergeAnimation(animations) {
 
     for (let i = 0 ; i < animations.length ; ++i) {
         setTimeout(() => {
+            const bars = document.getElementsByClassName("each-bar");
             changeColor = i % 3 !== 2;
 
             if (changeColor) {
                 const [firstIndex, secondIndex] = animations[i];
-                color = (i % 3 === 0 ? 'blue' : 'black');
+                color = (i % 3 === 0 ? 'salmon' : 'salmon');
 
-                document.getElementById(`idn${firstIndex}`).style.backgroundColor = color;
-                document.getElementById(`idn${secondIndex}`).style.backgroundColor = color;
+                bars[firstIndex].style.backgroundColor = color;
+                bars[secondIndex].style.backgroundColor = color;
             }
             else {
                 const [barOne, newHeight] = animations[i];
-                document.getElementById(`idn${barOne}`).style.height = `${newHeight}px`;
+                bars[barOne].style.height = `${newHeight}px`;
             }
         }, i * 1);
     }
@@ -317,8 +324,8 @@ function main() {
     
     let arr = [];
 
-    //sfillArray(arr);
-    //createBars(arr);
+    fillArray(arr);
+    createBars(arr);
     //bubbleSort(arr);
     //selectionSort(arr);
     //insertionSort(arr);
