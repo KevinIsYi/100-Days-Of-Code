@@ -224,10 +224,6 @@ function doMerge(mainArray, startIndex, middleIndex, endIndex, auxArray, animati
         j = middleIndex + 1;
 
     while(i <= middleIndex && j <= endIndex) {
-        
-        animations.push([i, j]);
-        animations.push([i, j]);
-
         if (auxArray[i] <= auxArray[j]) {
             animations.push([k, auxArray[i]]);
             mainArray[k++] = auxArray[i++];
@@ -239,41 +235,23 @@ function doMerge(mainArray, startIndex, middleIndex, endIndex, auxArray, animati
     }
 
     while(i <= middleIndex) {
-        animations.push([i, i]);
-        animations.push([i, i]);
         animations.push([k, auxArray[i]]);
-
         mainArray[k++] = auxArray[i++];
     }
     while(j <= endIndex) {
-        animations.push([j, j]);
-        animations.push([j, j]);
         animations.push([k, auxArray[j]]);
-
         mainArray[k++] = auxArray[j++];
     }
 }
 
 function doMergeAnimation(animations) {
     
-    let changeColor, color;
+    const bars = document.getElementsByClassName("each-bar");
 
     for (let i = 0 ; i < animations.length ; ++i) {
         setTimeout(() => {
-            const bars = document.getElementsByClassName("each-bar");
-            changeColor = i % 3 !== 2;
-
-            if (changeColor) {
-                const [firstIndex, secondIndex] = animations[i];
-                color = (i % 3 === 0 ? 'salmon' : 'salmon');
-
-                bars[firstIndex].style.backgroundColor = color;
-                bars[secondIndex].style.backgroundColor = color;
-            }
-            else {
-                const [barOne, newHeight] = animations[i];
+            const [barOne, newHeight] = animations[i];
                 bars[barOne].style.height = `${newHeight}px`;
-            }
         }, i * 1);
     }
 }
@@ -330,7 +308,7 @@ function main() {
     //selectionSort(arr);
     //insertionSort(arr);
     //shellSort(arr);
-    //mergeSort(arr);
+    mergeSort(arr);
     //quickSort(arr);
 }
 
