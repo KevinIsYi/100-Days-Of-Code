@@ -17,7 +17,7 @@ function createBars(arr) {
 function fillArray(arr) {
     const size = screen.height - 200;
 
-    for (let i = 0 ; i < 250 ; ++i) {
+    for (let i = 0 ; i < 300 ; ++i) {
         arr.push(Math.floor(Math.random() * size) + 1);
     }
 }
@@ -42,18 +42,27 @@ function swapingAnimation(animations) {
 function bubbleSort(arr) {
 
     const animations = [];
+    let i = arr.length - 1, j, flag;
 
-    for (let i = 0 ; i < arr.length; ++i) {
-        for (let j = 1 ; j < arr.length ; ++j) {
-            if (arr[j] < arr[j - 1]) {
-                animations.push([j, j - 1]);
+    do {
+        flag = false;
+        j = 0;
 
+        while (j < i) {
+            if (arr[j] > arr[j + 1]) {
                 const aux = arr[j];
-                arr[j] = arr[j - 1];
-                arr[j - 1] = aux;
+                arr[j] = arr[j + 1];
+                arr[j + 1] = aux;
+
+                animations.push([j, j + 1]);
+                flag = true;
             }
+            ++j;
         }
-    }
+        ++i;
+    } while(flag);
+
+
     swapingAnimation(animations);
 }
 
@@ -304,11 +313,11 @@ function main() {
 
     fillArray(arr);
     createBars(arr);
-    //bubbleSort(arr);
+    bubbleSort(arr);
     //selectionSort(arr);
     //insertionSort(arr);
     //shellSort(arr);
-    mergeSort(arr);
+    //mergeSort(arr);
     //quickSort(arr);
 }
 
