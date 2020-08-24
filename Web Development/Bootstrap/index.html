@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <h2 class="text-center">Cats!</h2>
+    <img class="img-responsive" src="https://bit.ly/fcc-running-cats" alt="cats">
+    <div class="row">
+        <div class="col-xs-4">
+          <button class="btn btn-block btn-primary">Like</button>
+        </div>
+        <div class="col-xs-4">
+          <button class="btn btn-block btn-info">Info</button>
+        </div>
+        <div class="col-xs-4">
+          <button class="btn btn-block btn-danger">Delete</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-8">
+          <h2 class="text-primary text-center">CatPhotoApp</h2>
+        </div>
+        <div class="col-xs-4">
+          <a href="#"><img class="img-responsive thick-green-border" src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+        </div>
+      </div>
+
+      <form class="form-control" action="https://freecatphotoapp.com/submit-cat-photo">
+        <div class="row">
+          <div class="col-xs-6">
+            <label><input type="radio" name="indoor-outdoor"> Indoor</label>
+          </div>
+          <div class="col-xs-6">
+            <label><input type="radio" name="indoor-outdoor"> Outdoor</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-4">
+            <label><input type="checkbox" name="personality"> Loving</label>
+          </div>
+          <div class="col-xs-4">
+            <label><input type="checkbox" name="personality"> Lazy</label>
+          </div>
+          <div class="col-xs-4">
+            <label><input type="checkbox" name="personality"> Crazy</label>
+          </div>
+        </div>
+        <input class="form-control"type="text" placeholder="cat photo URL" required>
+        <button class="btn btn-primary" type="submit"><i class="fa fa-paper-plane"></i>Submit</button>
+      </form>
+</body>
+</html>
