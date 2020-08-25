@@ -1,5 +1,10 @@
 :root {
     --lobster: 'Lobster', cursive;
+    --oswald: 'Oswald', sans-serif;
+    --blue-color: #22f7d7;
+    --orange-color: #f78522;
+    --red-color: #f72234;
+    --stronger-blue: #7b22f7;
 }
 
 /* More Buttoms are going to be here, styles are predefined */
@@ -10,10 +15,12 @@
     border-bottom-style: solid;
     border-bottom-width: 5px;
     box-shadow: 0 2px 5px black;
+    background-color: var(--blue-color);
 }
 
 .main-text {
     font-family: var(--lobster);
+    color: var(--orange-color);
     font-size: 100px;
 }
 
@@ -33,4 +40,17 @@
 .each-bar {
     background-color: salmon;
     margin: 0 1px;
+}
+
+.btn {
+    height: 50px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: var(--stronger-blue);
+    background-color: var(--orange-color);
+    font-family: var(--oswald);
+    font-weight: bold;
+    margin: 0 10px;
+    padding: 0 15px;
+    font-size: 30px;
 }

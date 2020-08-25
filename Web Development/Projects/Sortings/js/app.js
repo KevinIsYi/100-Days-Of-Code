@@ -313,12 +313,27 @@ function main() {
 
     fillArray(arr);
     createBars(arr);
-    bubbleSort(arr);
-    //selectionSort(arr);
-    //insertionSort(arr);
-    //shellSort(arr);
-    //mergeSort(arr);
-    //quickSort(arr);
+
+    const buttons = document.getElementById("buttons");
+    buttons.addEventListener("click", clickedButton);
+}
+
+function clickedButton(event) {
+    switch ((event.target.id)[0]) {
+        case "b":
+            bubbleSort();
+            break;
+        case "s":
+            break;
+        case "i":
+            break;
+        case "s":
+            break;
+        case "m":
+            break;
+        case "q":
+            break;
+    }
 }
 
 main();
