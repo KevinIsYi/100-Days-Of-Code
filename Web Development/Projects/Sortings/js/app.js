@@ -333,7 +333,13 @@ function clickedButton(event, arr) {
                 quickSort(arr); 
                 break;
         }
+        /*
         colorButton(event.target.id);
+        setTimeout(() => {
+            console.log("Habilitado");
+            document.getElementById("slider").disabled = false;
+        }, 5000);
+        */
     }
 }
 
@@ -342,24 +348,32 @@ function colorButton(button) {
     button.classList.add("button-onclick");
 }
 
-function input(event, slider) {
+function sliderInteractions(slider) {
 
     let arr = [];
     fillArray(arr, slider.value);
+    updateElementCount(slider);
     createBars(arr);
 
     return arr;
+}
+
+function updateElementCount(slider) {
+    elements = document.getElementById("nElements");
+    elements.innerHTML = slider.value;
 }
 
 function main() {
     
     let arr;
 
-    const buttons = document.getElementById("buttons");
-    const slider = document.getElementById("slider");
+    const buttons = document.getElementById("buttons"),
+        slider = document.getElementById("slider");
+
+    document.querySelector("body").addEventListener("DOMContentLoaded", updateElementCount(slider));
     
-    slider.addEventListener("input", function(event) {
-        arr = input(event, slider, arr);
+    slider.addEventListener("input", function() {
+        arr = sliderInteractions(slider);
     });
     buttons.addEventListener("click", function(event) {
         clickedButton(event, arr);

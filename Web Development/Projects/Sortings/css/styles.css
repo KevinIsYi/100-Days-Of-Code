@@ -80,6 +80,26 @@
     margin: 0 1px;
 }
 
+.custom-sortings-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nElements {
+    margin-left: 50px;
+    text-align: center;
+    color: white;
+    font-family: var(--lobster);
+    background-color: var(--purple-color);
+    border-radius: 5px;
+    width: 100px;
+    padding: 15px 0;
+    font-size: 40px;
+}
+
+
+
 .btn {
     height: 50px;
     border-style: solid;
