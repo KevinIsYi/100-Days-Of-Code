@@ -307,6 +307,38 @@ function quickSortHelper(animations, array, leftIndex, rightIndex) {
     
 }
 
+function clickedButton(event, arr) {
+
+    if (event.target.classList.contains("btn")) {
+        switch ((event.target.id)[0]) {
+            case "b":
+                bubbleSort(arr);
+                break;
+            case "s":
+                selectionSort(arr);
+                break;
+            case "i":
+                insertionSort(arr);
+                break;
+            case "s":
+                shellSort(arr);
+                break;
+            case "m":
+                mergeSort(arr);
+                break;
+            case "q":
+                quickSort(arr); 
+                break;
+        }
+        colorButton(event.target.id);
+    }
+}
+
+function colorButton(button) {
+    button = document.getElementById(button);
+    button.classList.add("button-onclick");
+}
+
 function main() {
     
     let arr = [];
@@ -315,25 +347,10 @@ function main() {
     createBars(arr);
 
     const buttons = document.getElementById("buttons");
-    buttons.addEventListener("click", clickedButton);
+    buttons.addEventListener("click", function(event) {
+        clickedButton(event, arr);
+    })
 }
 
-function clickedButton(event) {
-    switch ((event.target.id)[0]) {
-        case "b":
-            bubbleSort();
-            break;
-        case "s":
-            break;
-        case "i":
-            break;
-        case "s":
-            break;
-        case "m":
-            break;
-        case "q":
-            break;
-    }
-}
 
 main();

@@ -3,8 +3,9 @@
     --oswald: 'Oswald', sans-serif;
     --blue-color: #22f7d7;
     --orange-color: #f78522;
+    --stronger-orange: #f75200;
     --red-color: #f72234;
-    --stronger-blue: #7b22f7;
+    --purple-color: #7b22f7;
 }
 
 /* More Buttoms are going to be here, styles are predefined */
@@ -46,11 +47,22 @@
     height: 50px;
     border-style: solid;
     border-width: 3px;
-    border-color: var(--stronger-blue);
+    border-color: var(--purple-color);
     background-color: var(--orange-color);
     font-family: var(--oswald);
     font-weight: bold;
     margin: 0 10px;
     padding: 0 15px;
     font-size: 30px;
+    transition: all ease 0.5s;
+}
+
+.button-onclick {
+    background-color: var(--purple-color);
+    border-color: var(--orange-color);
+    color: white;
+}
+
+.btn:hover {
+    background-color: var(--stronger-orange);
 }
