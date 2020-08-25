@@ -4,6 +4,10 @@ function createBars(arr) {
         len = arr.length;
     let each;
 
+    while(bars.firstChild) {
+        bars.removeChild(bars.firstChild);
+    }
+
     arr.forEach(number => {
         each = document.createElement("div");
         each.classList.add("each-bar");
@@ -14,10 +18,10 @@ function createBars(arr) {
     });
 }
 
-function fillArray(arr) {
+function fillArray(arr, nElements) {
     const size = screen.height - 200;
 
-    for (let i = 0 ; i < 300 ; ++i) {
+    for (let i = 0 ; i < nElements ; ++i) {
         arr.push(Math.floor(Math.random() * size) + 1);
     }
 }
@@ -106,7 +110,6 @@ function insertionSort(arr) {
             if (i != j) {
                 bars[j].style.height = `${aux}px`;
                 arr[j] = aux;
-
             }
         }, 10 * i);
     }
@@ -339,17 +342,28 @@ function colorButton(button) {
     button.classList.add("button-onclick");
 }
 
-function main() {
-    
-    let arr = [];
+function input(event, slider) {
 
-    fillArray(arr);
+    let arr = [];
+    fillArray(arr, slider.value);
     createBars(arr);
 
+    return arr;
+}
+
+function main() {
+    
+    let arr;
+
     const buttons = document.getElementById("buttons");
+    const slider = document.getElementById("slider");
+    
+    slider.addEventListener("input", function(event) {
+        arr = input(event, slider, arr);
+    });
     buttons.addEventListener("click", function(event) {
         clickedButton(event, arr);
-    })
+    });
 }
 
 
