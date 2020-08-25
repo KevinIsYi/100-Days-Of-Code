@@ -15,6 +15,7 @@
     align-items: center;
     border-bottom-style: solid;
     border-bottom-width: 5px;
+    height: 150px;
     box-shadow: 0 2px 5px black;
     background-color: var(--blue-color);
 }
@@ -29,6 +30,42 @@
     text-align: center;
     width: 80%;
     margin: 0 auto;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 300px;
+    height: 25px;
+    background: white;
+    border-radius: 5px;
+    outline: none;
+}
+  
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: salmon;
+    cursor: pointer;
+  }
+
+.slider::-moz-range-thumb { /* Modzilla */
+    border-style: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: salmon;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb:hover {
+    box-shadow: 0 0 0 5px white;
+}
+
+.slider::-webkit-slider-thumb:hover {
+    box-shadow: 0 0 0 5px white;
 }
 
 .bars {
