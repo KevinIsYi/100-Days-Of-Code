@@ -1,6 +1,6 @@
 function createBars(arr) {
     const bars = document.querySelector(".bars"),
-        width = screen.width * 0.8 - 250, 
+        width = screen.width * 0.8 - 250,
         len = arr.length;
     let each;
 
@@ -19,7 +19,12 @@ function createBars(arr) {
 }
 
 function fillArray(arr, nElements) {
-    const size = screen.height - 200;
+
+    let size = screen.height - 200;
+
+    if (typeof InstallTrigger !== 'undefined') { // Firefox
+        size -= 150;
+    }
 
     for (let i = 0 ; i < nElements ; ++i) {
         arr.push(Math.floor(Math.random() * size) + 1);
@@ -365,7 +370,7 @@ function updateElementCount(slider) {
 
 function main() {
     
-    let arr;
+    let arr = [];
 
     const buttons = document.getElementById("buttons"),
         slider = document.getElementById("slider");
