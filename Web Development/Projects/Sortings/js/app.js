@@ -44,7 +44,7 @@ function swapingAnimation(animations) {
             bars[firstIndex].style.height = `${second}`;
             bars[secondIndex].style.height = `${first}`;
 
-        }, i * 5);
+        }, i * 50);
     }
 }
 
@@ -318,23 +318,23 @@ function quickSortHelper(animations, array, leftIndex, rightIndex) {
 function clickedButton(event, arr) {
 
     if (event.target.classList.contains("btn")) {
-        switch ((event.target.id)[0]) {
-            case "b":
+        switch ((event.target.id).substr(0, 2)) { // Taking first two characters
+            case "bu":
                 bubbleSort(arr);
                 break;
-            case "s":
+            case "se":
                 selectionSort(arr);
                 break;
-            case "i":
+            case "in":
                 insertionSort(arr);
                 break;
-            case "s":
+            case "sh":
                 shellSort(arr);
                 break;
-            case "m":
+            case "me":
                 mergeSort(arr);
                 break;
-            case "q":
+            case "qu":
                 quickSort(arr); 
                 break;
         }
