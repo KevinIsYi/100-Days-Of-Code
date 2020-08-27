@@ -1,3 +1,15 @@
+function swap(arr, i, j) {
+    const aux = arr[i];
+    arr[i] = arr[j];
+    arr[j] = aux;
+}
+
+function pushIntoAnimations(animations, first, second) {
+    for (let i = 0 ; i < 3 ; ++i) {
+        animations.push([first, second]);
+    }
+}
+
 function createBars(arr) {
     const bars = document.querySelector(".bars"),
         width = screen.width * 0.8 - 250,
@@ -32,52 +44,59 @@ function fillArray(arr, nElements) {
 }
 
 function swapingAnimation(animations) {
-
     const bars = document.getElementsByClassName("each-bar");
-    
+    let aux, color;
+
     for (let i = 0 ; i < animations.length ; ++i) {
         setTimeout(() => {
             const [firstIndex, secondIndex] = animations[i],
-                first = bars[firstIndex].style.height,
-                second = bars[secondIndex].style.height;
+                first = bars[firstIndex],
+                second = bars[secondIndex];
 
-            bars[firstIndex].style.height = `${second}`;
-            bars[secondIndex].style.height = `${first}`;
+            if (i % 3 !== 2) {
 
-        }, i * 50);
+                color = (i % 3 === 0 ? "black" : "salmon");
+
+                first.style.backgroundColor = color;
+                second.style.backgroundColor = color;
+            }
+            else {
+                aux = first.style.height;
+                first.style.height = second.style.height;
+                second.style.height = aux;
+            }
+        }, 10 * i);
     }
 }
 
 function bubbleSort(arr) {
 
     const animations = [];
-    let i = arr.length - 1, j, flag;
+    let aux, i = arr.length - 1, j, flag;
 
     do {
         flag = false;
         j = 0;
 
-        while (j < i) {
-            if (arr[j] > arr[j + 1]) {
-                const aux = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = aux;
 
-                animations.push([j, j + 1]);
+        while(j < i) {
+            if (arr[j] > arr[j + 1]) {
+                swap(arr, j, j + 1);
                 flag = true;
+
+                pushIntoAnimations(animations, j, j + 1);
             }
             ++j;
         }
         ++i;
     } while(flag);
 
-
     swapingAnimation(animations);
 }
 
 function selectionSort(arr) {
 
-    let animations = [], min;
+    let animations = [], min, aux;
 
     for (let i = 0 ; i < arr.length ; ++i) {
         min = i;
@@ -87,15 +106,24 @@ function selectionSort(arr) {
             }
         }
         if (i != min) { 
-            animations.push([i, min]);
-
-            const aux = arr[i];
-            arr[i] = arr[min];
-            arr[min] = aux;
+            swap(arr, i, min);
+            pushIntoAnimations(animations, i, min);
         }
     }
 
     swapingAnimation(animations);
+}
+
+function swapColors(firsIndex, secondIndex) {
+
+    for (let i = 0 ; i < 2 ; ++i) {
+        setTimeout(() => {
+            const color = (i % 2 === 0 ? "black" : "salmon");
+            firsIndex.style.backgroundColor = color;
+            secondIndex.style.backgroundColor = color; 
+        }, 10 * i);
+    }
+
 }
 
 function insertionSort(arr) {
@@ -108,8 +136,16 @@ function insertionSort(arr) {
             aux = arr[i];
 
             for (j = i ; j > 0 && aux < arr[j - 1] ; --j) {
+            
+                for (let k = 0, z = j ; k < 2 ; ++k) { // z needs to be declared here otherwise JS will do a crazy bug and undefined j
+                    setTimeout(() => {
+                        const color = (k % 2 === 0 ? "black" : "salmon");
+                        bars[z].style.backgroundColor = color;
+                        bars[z - 1].style.backgroundColor = color;
+                        
+                    }, 10 * k);
+                }
                 bars[j].style.height = bars[j - 1].style.height;
-
                 arr[j] = arr[j - 1];
             }
             if (i != j) {
@@ -181,11 +217,8 @@ function shellSort(arr) {
     for (let i = Math.round(arr.length * factor) ; i > 0 ; i = Math.floor(i * factor)) {
         for (let k = 0 ; k < arr.length - i ; ++k) {
             if (arr[k] > arr[k + i]) {
-                const aux = arr[k];
-                animations.push([k + i, k]);
-
-                arr[k] = arr[k + i];
-                arr[k + i] = aux;
+                swap(arr, k + i, k);
+                pushIntoAnimations(animations, k + i, k);
             }
         }
     }
@@ -241,6 +274,9 @@ function doMerge(mainArray, startIndex, middleIndex, endIndex, auxArray, animati
         j = middleIndex + 1;
 
     while(i <= middleIndex && j <= endIndex) {
+        animations.push([i, j]);
+        animations.push([i, j]);    
+        
         if (auxArray[i] <= auxArray[j]) {
             animations.push([k, auxArray[i]]);
             mainArray[k++] = auxArray[i++];
@@ -252,10 +288,14 @@ function doMerge(mainArray, startIndex, middleIndex, endIndex, auxArray, animati
     }
 
     while(i <= middleIndex) {
+        animations.push([i, i]);
+        animations.push([i, i]);
         animations.push([k, auxArray[i]]);
         mainArray[k++] = auxArray[i++];
     }
     while(j <= endIndex) {
+        animations.push([j, j]);
+        animations.push([j, j]);
         animations.push([k, auxArray[j]]);
         mainArray[k++] = auxArray[j++];
     }
@@ -267,8 +307,17 @@ function doMergeAnimation(animations) {
 
     for (let i = 0 ; i < animations.length ; ++i) {
         setTimeout(() => {
-            const [barOne, newHeight] = animations[i];
-                bars[barOne].style.height = `${newHeight}px`;
+            const [firsIndex, secondIndex] = animations[i];
+
+            if (i % 3 !== 2) {
+                const color = (i % 3 === 0 ? "black" : "salmon");
+
+                bars[firsIndex].style.backgroundColor = color;
+                bars[secondIndex].style.backgroundColor = color;
+            }
+            else {
+                bars[firsIndex].style.height = `${secondIndex}px`;
+            }
         }, i * 1);
     }
 }
@@ -296,18 +345,14 @@ function quickSortHelper(animations, array, leftIndex, rightIndex) {
         }
 
         if (i != j) {
-            animations.push([i, j]);
-            const aux = array[i];
-            array[i] = array[j];
-            array[j] = aux;
+            swap(array, i, j);
+            pushIntoAnimations(animations, i, j);
         }
     }
 
     if (i != rightIndex) {
-        animations.push([i, rightIndex]);
-        const aux = array[i];
-        array[i] = array[rightIndex];
-        array[rightIndex] = aux;
+        swap(array, i, rightIndex);
+        pushIntoAnimations(animations, i, rightIndex);
     }
 
     quickSortHelper(animations, array, leftIndex, i - 1);
