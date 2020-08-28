@@ -91,7 +91,7 @@ function bubbleSort(arr) {
         ++i;
     } while(flag);
 
-    swapingAnimation(animations);
+    return animations;
 }
 
 function selectionSort(arr) {
@@ -111,31 +111,19 @@ function selectionSort(arr) {
         }
     }
 
-    swapingAnimation(animations);
-}
-
-function swapColors(firsIndex, secondIndex) {
-
-    for (let i = 0 ; i < 2 ; ++i) {
-        setTimeout(() => {
-            const color = (i % 2 === 0 ? "black" : "salmon");
-            firsIndex.style.backgroundColor = color;
-            secondIndex.style.backgroundColor = color; 
-        }, 10 * i);
-    }
-
+    return animations;
 }
 
 function insertionSort(arr) {
 
-    let aux, j;
+    let aux, j, length = 0;
     const bars = document.getElementsByClassName("each-bar");
 
-    for (let i = 1 ; i < arr.length ; ++i) {
+    for (let i = 1 ; i < arr.length ; ++i, ++length) {
         setTimeout(() => {
             aux = arr[i];
 
-            for (j = i ; j > 0 && aux < arr[j - 1] ; --j) {
+            for (j = i ; j > 0 && aux < arr[j - 1] ; --j, ++length) {
             
                 for (let k = 0, z = j ; k < 2 ; ++k) { // z needs to be declared here otherwise JS will do a crazy bug and undefined j
                     setTimeout(() => {
@@ -154,6 +142,7 @@ function insertionSort(arr) {
             }
         }, 10 * i);
     }
+    return length;
 
     /*
     let animations = [];
@@ -222,7 +211,7 @@ function shellSort(arr) {
             }
         }
     }
-    swapingAnimation(animations);
+    return animations;
     /*
     for (let i = Math.round(arr.length * factor), j = 0 ; i > 0 ; i = Math.floor(i * factor), ++j) {
         setTimeout(() => {
@@ -256,6 +245,7 @@ function mergeSort(arr) {
     const auxArr = arr.slice();
     mergeSortHelper(arr, 0, arr.length - 1, auxArr, animations);
     doMergeAnimation(animations);
+    return animations.length;
 }
 
 function mergeSortHelper(mainArray, startIndex, endIndex, auxArray, animations) {
@@ -318,14 +308,14 @@ function doMergeAnimation(animations) {
             else {
                 bars[firsIndex].style.height = `${secondIndex}px`;
             }
-        }, i * 1);
+        }, i * 10);
     }
 }
 
 function quickSort(arr) {
     const animations = [];
     quickSortHelper(animations, arr, 0, arr.length - 1);
-    swapingAnimation(animations);
+    return animations;
 }
 
 function quickSortHelper(animations, array, leftIndex, rightIndex) {
@@ -363,39 +353,74 @@ function quickSortHelper(animations, array, leftIndex, rightIndex) {
 function clickedButton(event, arr) {
 
     if (event.target.classList.contains("btn")) {
+        let animations;
         switch ((event.target.id).substr(0, 2)) { // Taking first two characters
             case "bu":
-                bubbleSort(arr);
+                animations = bubbleSort(arr);
                 break;
             case "se":
-                selectionSort(arr);
+                animations = selectionSort(arr);
                 break;
             case "in":
-                insertionSort(arr);
+                animations = insertionSort(arr);
                 break;
             case "sh":
-                shellSort(arr);
+                animations = shellSort(arr);
                 break;
             case "me":
-                mergeSort(arr);
+                animations = mergeSort(arr);
                 break;
             case "qu":
-                quickSort(arr); 
+                animations = quickSort(arr); 
                 break;
         }
-        /*
-        colorButton(event.target.id);
+        
+        const currId = event.target.id;
+
+        if (currId !== "insertion" && currId !== "merge") {
+            swapingAnimation(animations);
+            animations = animations.length;
+        }
+
+        const slider = document.getElementById("slider"),
+            button = document.getElementById(currId).style,
+            shuffle = document.getElementById("shuffle"),
+            buttons = document.getElementsByClassName("btn");
+            
+        slider.disabled = true;
+        slider.classList.remove("can-change");
+        slider.classList.add("cant-change");
+        shuffle.style.backgroundColor = "#bdbdba";
+        shuffle.disabled = true;
+        changeButtonColor(button, "#7b22f7", "white");
+        desactiveButtons(buttons);
+        
         setTimeout(() => {
-            console.log("Habilitado");
+            slider.classList.remove("cant-change");
+            slider.classList.add("can-change");
+            changeButtonColor(button, "#f78522", "black");
+            shuffle.style.backgroundColor = "#7b22f7";
+            activeButtons(buttons);
+            shuffle.disabled = false;
             document.getElementById("slider").disabled = false;
-        }, 5000);
-        */
+        }, animations * 10);
+    }
+}
+function desactiveButtons(buttons) {
+
+    for (let i = 0 ; i < 6 ; ++i) {
+        buttons[i].disabled = true;
     }
 }
 
-function colorButton(button) {
-    button = document.getElementById(button);
-    button.classList.add("button-onclick");
+function activeButtons(buttons) {
+    for (let i = 0 ; i < 6 ; ++i) {
+        buttons[i].disabled = false;
+    }
+}
+function changeButtonColor(button, background, color) {
+    button.backgroundColor = background;
+    button.color = color;
 }
 
 function sliderInteractions(slider) {
@@ -409,8 +434,25 @@ function sliderInteractions(slider) {
 }
 
 function updateElementCount(slider) {
+    
     elements = document.getElementById("nElements");
-    elements.innerHTML = slider.value;
+    
+    const value = slider.value;
+    let arr = [];
+
+    elements.innerHTML = value;
+    fillArray(arr, value);
+    createBars(arr);
+
+    return arr;
+}
+
+function hoverEffect() {
+
+    console.log("Entre perro");
+    if (!shuffle.disabled) {
+        shuffle.style.backgroundColor = "blue";
+    }
 }
 
 function main() {
@@ -418,10 +460,21 @@ function main() {
     let arr = [];
 
     const buttons = document.getElementById("buttons"),
-        slider = document.getElementById("slider");
-
-    document.querySelector("body").addEventListener("DOMContentLoaded", updateElementCount(slider));
+        slider = document.getElementById("slider"),
+        shuffle = document.getElementById("shuffle");
     
+    window.onload = function() {
+        arr = updateElementCount(slider);
+    }
+
+    console.log(shuffle);
+    shuffle.addEventListener("click", function() {
+        const aux = arr.length;
+        arr = []
+        fillArray(arr, aux);
+        createBars(arr);
+    });
+
     slider.addEventListener("input", function() {
         arr = sliderInteractions(slider);
     });

@@ -2,13 +2,12 @@
     --lobster: 'Lobster', cursive;
     --oswald: 'Oswald', sans-serif;
     --blue-color: #22f7d7;
-    --orange-color: #f78522;
-    --stronger-orange: #f75200;
-    --red-color: #f72234;
+    --orange-color: #FF9E29;
     --purple-color: #7b22f7;
+    --gray-color: #bdbdba;
+    --stronger-gray: #a5a5a4;
 }
 
-/* More Buttoms are going to be here, styles are predefined */
 .webSite-header {
     display: flex;
     justify-content: space-around;
@@ -36,35 +35,57 @@
     -webkit-appearance: none;
     width: 300px;
     height: 25px;
-    background: white;
     border-radius: 5px;
     outline: none;
 }
-  
+
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 45px;
     height: 45px;
     border-radius: 50%;
-    background: salmon;
     cursor: pointer;
-  }
+}
 
-.slider::-moz-range-thumb { /* Modzilla */
+.slider::-moz-range-thumb {
     border-style: none;
     width: 45px;
     height: 45px;
     border-radius: 50%;
-    background: salmon;
     cursor: pointer;
 }
 
+.slider::-webkit-slider-thumb:hover {
+    box-shadow: 0 0 0 5px white;
+}
 .slider::-moz-range-thumb:hover {
     box-shadow: 0 0 0 5px white;
 }
 
-.slider::-webkit-slider-thumb:hover {
+.can-change {
+    background: white;
+}
+
+.slider::-webkit-slider-thumb {
+    background: salmon;
+}
+.can-change::-moz-range-thumb {
+    background: salmon;
+}
+
+/* This part will be executed when an animation is running */
+.cant-change {
+    background: var(--gray-color)
+}
+
+.cant-change::-webkit-slider-thumb {
+    background: var(--stronger-gray);
+    box-shadow: 0 0 0 5px white;
+}
+
+.cant-change::-moz-range-thumb {
+    background: var(--stronger-gray);
     box-shadow: 0 0 0 5px white;
 }
 
@@ -86,19 +107,20 @@
     align-items: center;
 }
 
-.nElements {
-    margin-left: 50px;
+.box {
+    background-color: var(--purple-color);
+    font-family: var(--lobster);
+    margin-left: 30px;
     text-align: center;
     color: white;
-    font-family: var(--lobster);
-    background-color: var(--purple-color);
     border-radius: 5px;
-    width: 100px;
-    padding: 15px 0;
+    width: auto;
+    padding: 15px 20px;
     font-size: 40px;
+    border-style: none;
+    text-transform: capitalize;
+    transition: all ease 0.3s;
 }
-
-
 
 .btn {
     height: 50px;
@@ -118,8 +140,4 @@
     background-color: var(--purple-color);
     border-color: var(--orange-color);
     color: white;
-}
-
-.btn:hover {
-    background-color: var(--stronger-orange);
 }
