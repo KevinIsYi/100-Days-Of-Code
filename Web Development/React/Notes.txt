@@ -1,0 +1,4 @@
+{Go to folder}
+npx create-react-app `name`
+cd `name`
+npm start
