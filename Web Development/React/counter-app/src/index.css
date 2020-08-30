@@ -1,0 +1,10 @@
+html, body {
+    color: #000;
+    background-color: #FFF;
+}
+
+button {
+    background-color: aqua;
+    width: 50px%;
+    font-size: 25px;
+}
