@@ -2,3 +2,21 @@
 npx create-react-app `name`
 cd `name`
 npm start
+
+rafcp 
+import React from 'react'
+import PropTypes from 'prop-types'
+
+const firstApp = props => {
+    return (
+        <div>
+            
+        </div>
+    )
+}
+
+firstApp.propTypes = {
+
+}
+
+export default firstApp
