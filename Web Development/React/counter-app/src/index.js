@@ -7,6 +7,7 @@ import "./index.css";
 
 const root = document.getElementById("root");
 
-//ReactDOM.render(<FirstApp greeting="Hola, soy juancho"/>, root);
+//ReactDOM.render(<FirstApp />, root);
+//ReactDOM.render(<FirstApp greeting="Hola, soy Kevin"/>, root);
 //ReactDOM.render(<FirstApp greeting={123}/>, root);
-ReactDOM.render(<CounterApp value={1235}/>, root);
+ReactDOM.render(<CounterApp value={100}/>, root);

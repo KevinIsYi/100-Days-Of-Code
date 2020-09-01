@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 //const FirstApp = ({greeting, subtittle}) => {
 const FirstApp = ({greeting, subtittle}) => {
 
-
     return (
         <>
             <h1>{greeting}</h1>
@@ -39,7 +38,7 @@ FirstApp.propTypes = {
 */
 
 FirstApp.propTypes = {
-    greeting: PropTypes.number.isRequired
+    greeting: PropTypes.string.isRequired
 }
 FirstApp.defaultProps = {
     subtittle: "SUBTITTLE"

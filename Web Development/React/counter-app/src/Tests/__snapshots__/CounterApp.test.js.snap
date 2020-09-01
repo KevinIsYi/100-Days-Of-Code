@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`counterApp test Must be equal to snapshot 1`] = `
+<Fragment>
+  <h1>
+    Counter App
+  </h1>
+  <h2>
+    100
+  </h2>
+  <button
+    onClick={[Function]}
+  >
+    +1
+  </button>
+  <button
+    onClick={[Function]}
+  >
+    RESET
+  </button>
+  <button
+    onClick={[Function]}
+  >
+    -1
+  </button>
+</Fragment>
+`;
+
+exports[`counterApp test Must show <CounterApp/> correctly 1`] = `
+<Fragment>
+  <h1>
+    Counter App
+  </h1>
+  <h2>
+    100
+  </h2>
+  <button
+    onClick={[Function]}
+  >
+    +1
+  </button>
+  <button
+    onClick={[Function]}
+  >
+    RESET
+  </button>
+  <button
+    onClick={[Function]}
+  >
+    -1
+  </button>
+</Fragment>
+`;
