@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const CounterApp = ({value = 100}) => {
 
     const [ counter, setCounter] = useState(value);
-    console.log(counter);
+    //console.log(counter);
 
     const sum = (e) => {
         setCounter(counter + 1);
