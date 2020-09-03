@@ -1,10 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test on <AddCategory Must show correctly 1`] = `
+exports[`Pruebas en <AddCategory /> debe de mostrarse correctamente 1`] = `
 <form
   onSubmit={[Function]}
 >
-  <p />
+  <p>
+     
+     
+  </p>
   <input
     onChange={[Function]}
     type="text"

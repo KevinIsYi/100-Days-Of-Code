@@ -1,32 +1,35 @@
-import React /*, { useEffect, useState }*/ from 'react'
-//import { getGif } from "../helpers/getGifs"; 
-import { GifGridItem } from './GifGridItem';
-import { useFetchGifs } from '../hooks/useFetchGifs';
+import React from 'react';
+import PropTypes from 'prop-types';
 
+import { useFetchGifs } from '../hooks/useFetchGifs';
+import { GifGridItem } from './GifGridItem';
 
 export const GifGrid = ({ category }) => {
 
-    const {data, loading} = useFetchGifs(category);
-
-    // const [images, setImages] = useState([]);
-
-    // useEffect(() => {
-    //     getGif(category)
-    //         .then(imgs => setImages(imgs))
-    // }, [category]); // This instruction will be executed when content is rended the first time
+    const { data:images, loading } = useFetchGifs( category );
 
     return (
         <>
-            <h3>{category}</h3>
-            <ul>
+            <h3 className="animate__animated animate__fadeIn"> { category } </h3>
+
+            { loading && <p className="animate__animated animate__flash">Loading</p> }
+
+            <div className="card-grid">
+                
                 {
-                    data.map(({id, url}) => 
-                        <li key={id}>  
-                            <GifGridItem url={url} />
-                        </li>
-                    )
+                    images.map( img => (
+                        <GifGridItem 
+                            key={ img.id }
+                            { ...img }
+                        />
+                    ))
                 }
-            </ul>
+            
+            </div>
         </>
     )
+}
+
+GifGrid.propTypes = {
+    category: PropTypes.string.isRequired
 }

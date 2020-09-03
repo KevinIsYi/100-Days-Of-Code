@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Test on <GifGridItem> Must match snapshot 1`] = `
-<img
-  alt="gif"
-  className="animate__fadeInLeft"
-  src="https//gdsgdsdjkgjkds.com"
-/>
-`;
