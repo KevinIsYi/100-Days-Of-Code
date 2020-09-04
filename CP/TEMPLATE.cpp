@@ -25,21 +25,6 @@ long long lcd(long long a, long long b) {
 	return a * b;
 }
 
-template <typename T>
-vector<T> allDivisors(T n) {
-	vector<T> divisors;
-	
-	for (int i = 1 ; i <= sqrt(n) ; ++i) {
-		if (n % i == 0) {
-			divisors.push_back(i);
-			if (n / i != i) {
-				divisors.push_back(n / i);
-			}
-		}
-	}
-	return divisors;
-}
-
 void solve() {
 	
 }
