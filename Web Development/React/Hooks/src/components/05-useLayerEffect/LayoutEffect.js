@@ -13,7 +13,6 @@ export const LayoutEffect = () => {
     const pTag = useRef();
 
     useLayoutEffect(() => {
-        console.log(pTag.current.getBoundingClientRect().width);
         console.log(pTag.current.getBoundingClientRect());
     }, [quote]);
 
