@@ -12,11 +12,11 @@ import ReactDOM from 'react-dom'
 // //import { MemoHook } from './components/06-memos/MemoHook';
 // //import { CallBackHook } from './components/06-memos/CallBackHook';
 // import { Father } from './components/07-tarea-memo/Father';
-
-import { TodoApp } from "./components/08-useReducer/TodoApp";
+//import { TodoApp } from "./components/08-useReducer/TodoApp";
+import { MainApp } from './components/09.-useContext/MainApp';
 
 ReactDOM.render (
-    <TodoApp />,
+    <MainApp />,
     document.getElementById('root')
 );
 
