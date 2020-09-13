@@ -23,7 +23,7 @@ long long lcd(long long a, long long b) {
 	}
 	a /= gcd(a, b);
 	return a * b;
-}
+}	
 
 void solve() {
 	
@@ -34,8 +34,8 @@ int main() {
 	cin.tie(0);
 	
 	int t;
-	
 	cin >> t;
+	
 	while(t--) {
 		solve();
 	}
