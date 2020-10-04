@@ -13,20 +13,32 @@
 
     <header class="header">TODO (0)</header>
 
-    <main class="main-container center">
-        <div class="add-todo">
-            <label for="new-todo"></label>
-            <input type="text" name="new-todo" placeholder="Learn...">
-            <button class="btn btn-dd"><i class="fas fa-plus-circle"></i></button>
-        </div>
-        <ul class="todo-list-container center">
-            <li class="todo">
-                <h4>Working!</h4>
-                <button class="btn edit"><i class="fas fa-pencil-alt"></i></button>
-                <button class="btn delete"><i class="fas fa-trash-alt"></i></button>
+    <main class="main-container">
+        <ul class="todo-list">
+            <div class="arrows">
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-right"></i>
+            </div>
+            <li class="todo-item">
+                <p>Hacer la tarea de salomón que chingue su madre</p>
+                <button class="btn edit-btn"><i class="fas fa-edit"></i></button>
+                <button class="btn del-btn"><i class="fas fa-trash-alt"></i></button>
+            </li>
+            <li class="todo-item">
+                <p>Hacer la tarea de salomón que chingue su madre</p>
+                <button class="btn edit-btn"><i class="fas fa-edit"></i></button>
+                <button class="btn del-btn"><i class="fas fa-trash-alt"></i></button>
+            </li>
+            <li class="todo-item">
+                <p>Hacer la tarea de salomón que chingue su madre</p>
+                <button class="btn edit-btn"><i class="fas fa-edit"></i></button>
+                <button class="btn del-btn"><i class="fas fa-trash-alt"></i></button>
             </li>
         </ul>
-
+        <div class="new-todo">
+            <input type="text" placeholder="Todo...">
+            <button class="btn btn-add-todo">Add TODO</button>
+        </div>
     </main>
 
 
