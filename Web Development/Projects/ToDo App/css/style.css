@@ -44,6 +44,7 @@ li {
 }
 
 .arrows i {
+    color: #A1A1A1;
     font-size: 25px;
 }
 
@@ -61,6 +62,7 @@ li {
 
 .del-btn {
     background-color: #FF1616;
+    margin-bottom: 10px;
 }
 
 .new-todo {
@@ -72,5 +74,5 @@ li {
     background-color: cyan;
     font-weight: bold;
     margin-top: 10px;
-    width: 85%;
+    width: 80%;
 }
