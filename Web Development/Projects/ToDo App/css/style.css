@@ -56,11 +56,11 @@ li {
     font-size: 20px;
 }
 
-.edit-btn {
+.edit-del-btn {
     background-color: #FAFF4A;
 }
 
-.del-btn {
+.edit-del-btn:last-child {
     background-color: #FF1616;
     margin-bottom: 10px;
 }
@@ -68,6 +68,13 @@ li {
 .new-todo {
     bottom: 25px;
     position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+}
+
+.new-todo input {
+    width: 80%;
 }
 
 .btn-add-todo {
@@ -75,4 +82,39 @@ li {
     font-weight: bold;
     margin-top: 10px;
     width: 80%;
+}
+
+@media (min-width: 768px) {
+    .main-container {
+        display: flex;
+    }
+    .todo-list li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .bttns {
+        display: flex;
+    }
+    .todo-list p {
+        margin-right: 50px;
+    }
+    .todo-item p {
+        width: 50%;
+    }
+    .btn {
+        padding: 10px 5px;
+    }
+    .edit-del-btn {
+        width: 100px;
+    }
+    .edit-del-btn:last-child {
+        margin: 0 0 0 15px;
+    }
+}
+
+@media (min-width: 900px) {
+    .edit-del-btn {
+        width: 150px;
+    }
 }
