@@ -3,10 +3,10 @@ const btn = document.getElementById('btn-add');
 
 class UI {
 
+    updateTodosCounter(count) {
+        document.getElementById('todos-count').textContent = `TODOS (${ count })`;
+    }
     printTodos({ todos }) {
-
-        console.log("Desde aca");
-        console.log(todos);
 
         this.cleanTodos();
 
@@ -41,8 +41,6 @@ class UI {
             document.querySelector('.todo-list').appendChild(newLI);
 
             inputText.value = '';
-
-            console.log(newLI);
         });
     }
 
@@ -62,9 +60,15 @@ class Todos {
 
     addTodo(todo) {
         this.todos = [...this.todos, todo];
-        console.log(todos);
     }
 
+    deleteTodo( idToDelete ) {
+        this.todos = this.todos.filter(todo => todo.id !== idToDelete);
+    }
+
+    editTodo( editedTodo ) {
+        this.todos = this.todos.map(todo => todo.id === editedTodo.id ? editedTodo : todo);
+    }
 }
 
 const newTodo = {
@@ -72,50 +76,53 @@ const newTodo = {
     text: ''
 };
 
+let isEditing = false;
+let todosCount = 0;
+
 const ui = new UI();
 const todos = new Todos();
 
 const addTodo = () => {
     const { value } = inputText;
     const length = value.length;
-    
-    if (length > 0 && length <= 75) {
-        newTodo.id = Date.now();
-        newTodo.text = value;
 
-        todos.addTodo({ ...newTodo }); // Sending copy of newTodo
+    if (length > 0 && length <= 75) {
+        newTodo.text = value;
+        if (!isEditing) {
+            newTodo.id = Date.now();
+            todos.addTodo({ ...newTodo }); // Sending copy of newTodo
+            ++todosCount;
+        }
+        else {
+            todos.editTodo({ ...newTodo });
+
+            inputText.placeholder = 'Todo...';
+            btn.textContent = 'Add TODO';
+            isEditing = false;
+        }
+
         ui.printTodos(todos);
+        ui.updateTodosCounter(todosCount);
     }
 }
 
+const editTodo = (id) => {
+    inputText.focus();
+    inputText.placeholder = 'Edit mode';
+    btn.textContent = 'Edit TODO';
+
+    isEditing = true;
+    newTodo.id = id;
+}
+
+const deleteTodo = (id) => {
+    todos.deleteTodo(id);
+    ui.printTodos(todos);
+    ui.updateTodosCounter(--todosCount);
+}
 
 const eventListeners = () => {
     btn.addEventListener('click', addTodo);
 };
 
 eventListeners();
-
-
-
-/*
-
-
-eventListeners();
-
-const deleteTodo = (id) => {
-    const todo = document.getElementById(id);
-    todo.remove();
-}
-
-const editTodo = (id) => {
-    const todo = document.getElementById(id);
-    const input = document.getElementById('new-todo-text');
-    const inputBtn = document.getElementById('btn-add');
-
-    inputBtn.textContent = 'Edit TODO';
-    input.placeholder = 'Edit yout TODO';
-    input.focus();
-
-    isEditingTodo = true;
-}
-*/
