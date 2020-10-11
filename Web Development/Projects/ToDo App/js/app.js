@@ -103,6 +103,7 @@ const addTodo = () => {
 
         ui.printTodos(todos);
         ui.updateTodosCounter(todosCount);
+        inputText.focus();
     }
 }
 
