@@ -97,3 +97,121 @@ customer[custName] = 'Kevin';
 
 console.log(customer);
 */
+
+/* ITERATORS
+const createIterator = (carr) => {
+    
+    let i = 0;
+
+    return {
+        next: () => {
+            const end = i >= carr.length;
+            const value = !end ? carr[i++] : undefined;
+
+            return {
+                end, 
+                value
+            }
+        }
+    }
+}
+
+const crr = ['Item 1', 'Item 2', 'Item 3'];
+const carrIterator = createIterator(crr);
+
+console.log(carrIterator.next());
+console.log(carrIterator.next());
+console.log(carrIterator.next());
+console.log(carrIterator.next());
+*/
+
+/* GENERATOR 
+// function *createGenerator() { // Need asterisk
+//     yield 1;
+//     yield 'Kevin';
+//     yield 3 + 3;
+//     yield true;
+// }
+
+// const iterator = createGenerator();
+// console.log(iterator); // It is suspenden when the generator is not being used
+// console.log(iterator.next().value);
+// console.log(iterator.next().value);
+// console.log(iterator.next().value);
+// console.log(iterator.next());
+// console.log(iterator.next()); // Done is going to execute when there are no values
+
+// Generator for shopping car
+function *generatorCar(carr) {
+    for (let i = 0 ; i < carr.length ; ++i) {
+        yield carr[i]
+    }
+}
+
+const crr = ['Item 1', 'Item 2', 'Item 3'];
+const iterator = generatorCar(crr);
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
+*/
+
+// ITERATORS
+
+const ciudades = ['Londres', 'New York', 'Madrid', 'Paris'];
+const ordenes = new Set([123, 231, 131, 102]);
+const datos = new Map();
+
+datos.set('nombre', 'Juan');
+datos.set('profesion', 'Desarrollador Web');
+
+// Default
+for(let ciudad of ciudades) {
+    console.log(ciudad);
+}
+
+for(let orden of ordenes) {
+    console.log(orden);
+}
+
+for(let dato of datos) {
+    console.log(dato);
+}
+
+// Keys Iterator
+// for( let keys of ciudades.keys() ) {
+//     console.log(keys);
+// }
+
+// for( let keys of ordenes.keys() ) {
+//     console.log(keys);
+// }
+
+// for( let keys of datos.keys() ) {
+//     console.log(keys);
+// }
+
+
+// // Values Iterator
+// for( let value of ciudades.values()) {
+//     console.log(value);
+// }
+// for( let value of ordenes.values()) {
+//     console.log(value);
+// }
+// for( let value of datos.values()) {
+//     console.log(value);
+// }
+
+
+// Entries Iterator
+// for (let entry of ciudades.entries() ) {
+//     console.log(entry);
+// }
+
+// for (let entry of ordenes.entries() ) {
+//     console.log(entry);
+// }
+
+// for (let entry of datos.entries() ) {
+//     console.log(entry);
+// }
