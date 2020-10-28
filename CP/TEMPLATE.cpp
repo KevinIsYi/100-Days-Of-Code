@@ -26,7 +26,7 @@ long long lcd(long long a, long long b) {
 }	
 
 void solve() {
-	
+
 }
 
 int main() {

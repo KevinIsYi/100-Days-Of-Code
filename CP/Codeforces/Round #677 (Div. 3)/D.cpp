@@ -31,52 +31,34 @@ void solve() {
 	cin >> n;
 	
 	vector<int> vct(n);
-	map<int, vector<int>> mp;
-	for (int i = 0 ; i < n ; ++i) {
-		cin >> vct[i];
+	for (int & val : vct) {
+		cin >> val;
 	}
-
-	for (int i = 0 ; i < n ; ++i) {
-		mp[vct[i]].pb(i);
 	
-		if ((int)mp[vct[i]].size() > n / 2) {
-			can = false;
-			break;
+	vector<pair<int, int>> ans;
+	int idx = -1;
+	for (int i = 0 ; i < n ; ++i) {
+		if (vct[i] != vct[0]) {
+			idx = i;
+			ans.pb(mp(1, i + 1));
 		}
-		
 	}
 	
-	
-	if (can) {
-		cout << "YES\n";
-		
-		bool find;
-		int va = 0;
-		set<pair<int, int>> ans;
-		
-		for (pair<int, vector<int>> pa : mp) {
-			for (pair<int, vector<int>> s : mp) {
-				if (pa.first != s.first) {
-					for (int val : pa.second) {
-						for (int val2 : s.second) {
-							if (va < n - 1 && !ans.count(mp(pa.first, val2 + 1))) {
-								ans.insert(mp(val + 1, val2 + 1));
-								++va;
-							}
-						}
-					}
-				}
+	if (idx == -1) {
+		cout << "NO\n";
+	}
+	else {
+		for (int i = 1 ; i < n ; ++i) {
+			if (vct[i] == vct[0]) {
+				ans.pb(mp(idx + 1, i + 1));
 			}
 		}
-		
-		
+		cout << "YES\n";
 		for (pair<int, int> pa : ans) {
 			cout << pa.first << " " << pa.second << "\n";
 		}
 	}
-	else {
-		cout << "NO\n";
-	}
+	
 	
 	
 }
