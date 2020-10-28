@@ -56,6 +56,6 @@ const createCustomer = () => {
         email: 'email@email.com'
     }
 
-    const request = objectStore.add(newCustomer);
+    const request = objectStore.add(newCustomer); // put to update and delete to delete
     console.log(request);
 }
