@@ -1,0 +1,12 @@
+.journal__main-content {
+    align-items: center;
+    background-color: $primary;
+    color: $white;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+
+    p {
+        text-align: center;
+    }
+}
