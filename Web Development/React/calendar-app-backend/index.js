@@ -1,5 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const { dbConnection } = require('./database/config');
 
 dotenv.config();
 
@@ -7,6 +8,9 @@ const { PORT } = process.env;
 
 // Create express server
 const app = express();
+
+// Database
+dbConnection();
 
 
 app.use(express.static('public'));
