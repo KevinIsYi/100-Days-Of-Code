@@ -1,5 +1,11 @@
 const resultado = document.querySelector('#resultado');
 const formulario = document.querySelector('#formulario');
+const paginacionDiv = document.querySelector('#paginacion');
+const registrosPorPagina = 40;
+
+let totalPaginas;
+let iterador;
+let paginaActual = 1;
 
 const validarFormulario = (e) => {
     e.preventDefault();
@@ -10,7 +16,7 @@ const validarFormulario = (e) => {
         mostrarAlerta('No hay texto');
     } 
     else {
-        buscarImagenes(terminoBusqueda);
+        buscarImagenes();
     }
 }
 
@@ -34,15 +40,25 @@ const mostrarAlerta = (mensaje) => {
     }
 }
 
-const buscarImagenes = (termino) => {
+const buscarImagenes = () => {
+    const termino = document.querySelector('#termino').value;
     const key = '19198783-5925320eb98a8920550b8b8c8';
-    const url = `https://pixabay.com/api/?key=${ key }&q=${ termino }&per_page=100`;
+    const url = `https://pixabay.com/api/?key=${ key }&q=${ termino }&per_page=${ registrosPorPagina }&page=${ paginaActual }`;
 
     fetch(url)
         .then(resp => resp.json())
         .then(res => {
+            totalPaginas = calcularPaginas(res.totalHits);
             mostrarImagenes(res.hits);
         })
+}
+
+// Generador
+
+function *crearPaginador(total) {
+    for (let i = 1 ; i <= totalPaginas ; ++i) {
+        yield i; // registrar valor
+    }
 }
 
 const mostrarImagenes = (imagenes) => {
@@ -68,8 +84,44 @@ const mostrarImagenes = (imagenes) => {
             </div>
         `;
     });
+
+    while(paginacionDiv.firstChild) {
+        paginacionDiv.removeChild(paginacionDiv.firstChild);
+    }
+
+    imprimirPaginador();
+
 }
 
+const imprimirPaginador = () => {
+    iterador = crearPaginador(totalPaginas);
+ 
+    
+    while(true) {
+        const { value, done } = iterador.next();
+
+        if (done) {
+            break;
+        }
+
+        const boton = document.createElement('a');
+
+        boton.onclick = () => {
+            paginaActual = value;
+            buscarImagenes();
+        }
+
+        boton.href = '#';
+        boton.dataset.pagina = value;
+        boton.textContent = value;
+        boton.classList.add('siguiente', 'bg-yellow-400', 'px-4', 'py-1', 'mr-2', 'font-bold', 'mb-10', 'uppercase', 'rounded');
+    
+        paginacionDiv.appendChild(boton);
+    }
+
+}
+
+const calcularPaginas = total => parseInt(Math.ceil(total / registrosPorPagina));
 
 window.onload = () => {
     formulario.addEventListener('submit', validarFormulario);
