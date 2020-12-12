@@ -10,7 +10,6 @@ import {
 export const Cita = ({ cita, eliminarCita }) => {
     const { id, paciente, propietario, sintomas } = cita;
 
-    console.log("Genera con id: ", id);
     const dialogoEliminar = () => {
         eliminarCita(id);
     }

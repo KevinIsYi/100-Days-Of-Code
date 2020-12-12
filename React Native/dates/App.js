@@ -4,7 +4,8 @@ import {
   Text,
   StyleSheet,
   View,
-  FlatList
+  FlatList,
+  TouchableHighlight,
 } from 'react-native';
 
 import { Cita } from './components/Cita';
@@ -33,6 +34,8 @@ const App = () => {
     },
   ]);
 
+  const [ mostrarForm, guardarMostrarForm ] = useState(false);
+
   const eliminarCita = id => {
     setCitas(citas.filter(cita => cita.id !== id));
   } 
@@ -41,16 +44,41 @@ const App = () => {
   return (
     <View style={ styles.container }>
       <Text style={ styles.tittle } >Administrador de Citas</Text>
-      <Formulario />
-      <Text style={ styles.tittle }>{ citas.length > 0 ? 'Administra tus Citas' : 'No hay Citas' }</Text>
-      <FlatList
-        data={ citas }
-        renderItem={ ({ item }) => (
-            <Cita cita={ item } eliminarCita={ eliminarCita } />
-          ) 
+      <TouchableHighlight 
+          style={ styles.btnMostrarForm }
+          onPress={ () => guardarMostrarForm(!mostrarForm) }
+      >
+          <Text style={ styles.textoMostrarForm }>{ mostrarForm ? 'Ver Citas' : 'Crear Nueva Cita'}</Text>
+      </TouchableHighlight>
+      <View style={ styles.contenido }>
+        {
+          mostrarForm ? 
+            <>
+              <Text style={ styles.tittle }>Crear Nueva Cita</Text>
+              <Formulario 
+                citas={ citas }
+                setCitas={ setCitas }
+                guardarMostrarForm={ guardarMostrarForm }
+              />
+            </>
+          :
+            <>
+              <Text style={ styles.tittle }>{ citas.length > 0 ? 'Administra tus Citas' : 'No hay Citas' }</Text>
+              <FlatList
+                style={ styles.listado }
+                data={ citas }
+                renderItem={ ({ item }) => (
+                    <Cita 
+                      cita={ item } 
+                      eliminarCita={ eliminarCita }
+                    />
+                  ) 
+                }
+                keyExtractor={ ({ id }) => id }
+              />
+            </>
         }
-        keyExtractor={ ({ id }) => id }
-      />
+      </View>
     </View>
   );
 };
@@ -67,6 +95,25 @@ const styles = StyleSheet.create({
     marginTop: 10,
     textAlign: 'center',
     marginBottom: 20
+  },
+  contenido: {
+    flex: 1,
+    marginHorizontal: '2.5%'
+  },
+  listado: {
+    flex: 1,
+    marginBottom: 20
+  },
+  btnMostrarForm: {
+      padding: 10,
+      backgroundColor: '#7D024E',
+      marginVertical: 20,
+      
+  },
+  textoMostrarForm: {
+      color: '#fff',
+      fontWeight: 'bold',
+      textAlign: 'center'
   }
 });
 
