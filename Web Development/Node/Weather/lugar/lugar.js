@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 const getLugar = async ({ direccion }) => {
-    const key = '6e2da1554fb38c75b246eaa0ec5972c2';
+    const key = '-';
     const encodedUrl = encodeURI(direccion);
     
     const instance = axios.create({
@@ -22,7 +22,7 @@ const getLugar = async ({ direccion }) => {
 }
 
 const getTemperatura = async ({ lon, lat }) => {
-    const key = '6e2da1554fb38c75b246eaa0ec5972c2';
+    const key = '-';
     const res = await axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${ lat }&lon=${ lon }&appid=${ key }&units=metric`);
     if (res.statusText === 'OK') {
         const { data } = res;
