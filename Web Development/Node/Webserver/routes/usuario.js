@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const router = Router();
+const Usuario = require('../models/usuario');
 
 router.get('/usuario', (req, res) => {
     res.json({
@@ -8,12 +9,31 @@ router.get('/usuario', (req, res) => {
     })
 });
 
-router.post('/usuario', (req, res) => {
-    console.log(req);
-    res.json({
-        ok: true,
-        lugar: 'post'
-    })
+router.post('/usuario', async (req, res) => {
+    const { body:{ nombre, email, password, rol } } = req;
+    
+    const usuario = new Usuario({
+        nombre,
+        email,
+        password,
+        rol
+    });
+
+    try {
+        await usuario.save();
+
+        return res.status(201).json({
+            ok: true,
+            mensaje: 'Usuario guardado en DB'
+        })
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            ok: false,
+            mensaje: 'Falla al guardar en la base de datos'
+        })
+    }
+
 });
 
 router.put('/usuario/:id', (req, res) => {
