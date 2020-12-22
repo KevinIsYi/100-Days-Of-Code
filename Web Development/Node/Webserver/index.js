@@ -1,39 +1,12 @@
-require('./config/config');
 const express = require('express');
+const dbConnection = require('./database/config');
+require('./config/config');
+
 const app = express();
 
-app.get('/usuario', (req, res) => {
-    res.json({
-        ok: true,
-        lugar: 'get'
-    })
-});
-
-app.post('/usuario', (req, res) => {
-    console.log(req);
-    res.json({
-        ok: true,
-        lugar: 'post'
-    })
-});
-
-app.put('/usuario/:id', (req, res) => {
-
-    const { id } = req.params;
-    console.log(id);
-
-    res.json({
-        ok: true,
-        lugar: 'put'
-    })
-});
-
-app.delete('/usuario', (req, res) => {
-    res.json({
-        ok: true,
-        lugar: 'delete'
-    })
-});
+app.use(express.json());
+app.use(require('./routes/usuario'));
+dbConnection();
 
 app.listen(process.env.PORT, () => {
     console.log(`Escuchando puerto: ${ process.env.PORT }`);
