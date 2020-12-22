@@ -36,15 +36,26 @@ router.post('/usuario', async (req, res) => {
 
 });
 
-router.put('/usuario/:id', (req, res) => {
+router.put('/usuario/:id', async (req, res) => {
 
-    const { id } = req.params;
-    console.log(id);
+    const { params:{ id } } = req;
+    const { body } = req;
 
-    res.json({
-        ok: true,
-        lugar: 'put'
-    })
+    try {
+        const user = await Usuario.findByIdAndUpdate(id, body, {
+            new: true
+        });
+        console.log(user);
+        return res.status(200).json({
+            ok: true
+        })
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            ok: false,
+            message: 'Fallo al acceder a DB'
+        })
+    }
 });
 
 router.delete('/usuario', (req, res) => {
