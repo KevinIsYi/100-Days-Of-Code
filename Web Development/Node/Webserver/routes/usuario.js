@@ -1,4 +1,5 @@
 const { Router } = require('express');
+const { verificarToken } = require('../middlewares/autenticacion');
 const router = Router();
 const Usuario = require('../models/usuario');
 
@@ -9,7 +10,7 @@ router.get('/usuario', (req, res) => {
     })
 });
 
-router.post('/usuario', async (req, res) => {
+router.post('/usuario', verificarToken, async (req, res) => {
     const { body:{ nombre, email, password, rol } } = req;
     
     const usuario = new Usuario({
