@@ -16,7 +16,7 @@ export const Animacion6 = () => {
             Animated.timing(animacion1, {
                 toValue: 60,
                 duration: 500,
-                useNtiveDriver: true  
+                usseNativeDriver: true  
             })
         ]).start();
     }, []);
