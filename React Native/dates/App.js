@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import {
   Text,
@@ -7,39 +7,47 @@ import {
   FlatList,
   TouchableHighlight,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage'
+
 
 import { Cita } from './components/Cita';
 import { Formulario } from './components/Formulario';
 
 const App = () => {
 
-  const [citas, setCitas] = useState([
-    {
-      id: '1',
-      paciente: 'hook',
-      propietario: 'Kevin',
-      sintomas: 'No come'
-    },
-    {
-      id: '2',
-      paciente: 'Redux',
-      propietario: 'Iván',
-      sintomas: 'No come no duerme'
-    },
-    {
-      id: '3',
-      paciente: 'Native',
-      propietario: 'Yo mero',
-      sintomas: 'No come ni habla'
-    },
-  ]);
+  const [citas, setCitas] = useState([]);
+  useEffect(() => {
+    const obtenerCitasStorage = async() => {
+      console.log("Eeeeh");
+      try {
+        const citasStorage = await AsyncStorage.getItem('citas');
+        if (citasStorage) {
+          setCitas(JSON.parse(citasStorage));
+        }
+      } catch (error) {
+        console.log(error);
+      }  
+    }
+    obtenerCitasStorage();
+  }, []);
+
 
   const [ mostrarForm, guardarMostrarForm ] = useState(false);
 
   const eliminarCita = id => {
-    setCitas(citas.filter(cita => cita.id !== id));
+    const citasFiltradas = citas.filter(cita => cita.id !== id);
+    setCitas(citasFiltradas);
+    guardarCitasStorage(JSON.stringify(citasFiltradas));
   } 
 
+
+  const guardarCitasStorage = async (citasJSON) => {
+    try {
+      await AsyncStorage.setItem('citas', citasJSON);
+    } catch(error) {
+      console.log(error);
+    }
+  }
 
   return (
     <View style={ styles.container }>
@@ -59,6 +67,7 @@ const App = () => {
                 citas={ citas }
                 setCitas={ setCitas }
                 guardarMostrarForm={ guardarMostrarForm }
+                guardarCitasStorage={ guardarCitasStorage }
               />
             </>
           :

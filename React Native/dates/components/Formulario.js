@@ -14,7 +14,7 @@ import {
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import shortid from 'shortid';
 
-export const Formulario = ({ citas, setCitas, guardarMostrarForm }) => {
+export const Formulario = ({ citas, setCitas, guardarMostrarForm, guardarCitasStorage }) => {
     console.log(citas);
 
     const [ isDatePickerVisible, setDatePickerVisibility ] = useState(false);
@@ -80,8 +80,11 @@ export const Formulario = ({ citas, setCitas, guardarMostrarForm }) => {
         }
         else {
             const cita = { paciente, propietario, telefono, fecha, hora, sintomas, id: shortid.generate() };
-            setCitas([...citas, cita]);
+            const citasAux = [...citas, cita];
+            setCitas(citasAux);
             guardarMostrarForm(false);
+
+            guardarCitasStorage(JSON.stringify(citasAux));
         }
     }
 
