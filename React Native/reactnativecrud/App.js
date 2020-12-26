@@ -47,16 +47,6 @@ const App = () => {
           <Stack.Screen 
             name="Inicio"
             component={ Inicio }
-            options={
-              ({ navigation, route }) => ({
-                headerLeft: (props) => 
-                  <Barra 
-                    {...props } 
-                    navigation={ navigation }
-                    route={ route }
-                  />
-              })
-            }
           />
           <Stack.Screen 
             name="NuevoCliente"

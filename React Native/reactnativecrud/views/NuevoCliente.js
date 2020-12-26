@@ -5,12 +5,13 @@ import { View, StyleSheet, Platform } from 'react-native';
 import { TextInput, Headline, Button, Paragraph, Dialog, Portal } from 'react-native-paper';
 import { globalStyles } from '../styles/global';
 
-export const NuevoCliente = ({ navigation }) => {
+export const NuevoCliente = ({ navigation, route }) => {
 
     const [ nombre, setNombre ] = useState('');
     const [ telefono, setTelefono ] = useState('');
     const [ correo, setCorreo ] = useState('');
     const [ empresa, setEmpresa ] = useState('');
+    const { guardarConsultarApi } = route.params;
 
     const [ alerta, setAlerta ] = useState(false);
 
@@ -23,10 +24,11 @@ export const NuevoCliente = ({ navigation }) => {
 
             try {
                 //ANDROID LOCALHOST
-                const url = Platform.OS === 'ios' ? 'localhost' : '192.168.0.13';
+                const url = Platform.OS === 'ios' ? 'localhost' : 'PC IP';
                 await axios.post(`http://${ url }:3000/clientes`, cliente);
 
                 navigation.navigate('Inicio');
+                guardarConsultarApi(true);
                 
             } catch (error) {
                 console.log(error);
