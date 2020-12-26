@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import axios from 'axios';
+
+import { View, StyleSheet, Platform } from 'react-native';
 import { TextInput, Headline, Button, Paragraph, Dialog, Portal } from 'react-native-paper';
 import { globalStyles } from '../styles/global';
 
-export const NuevoCliente = () => {
+export const NuevoCliente = ({ navigation }) => {
 
     const [ nombre, setNombre ] = useState('');
     const [ telefono, setTelefono ] = useState('');
@@ -12,12 +14,23 @@ export const NuevoCliente = () => {
 
     const [ alerta, setAlerta ] = useState(false);
 
-    const guardarCliente = () => {
+    const guardarCliente = async () => {
         if (nombre === '' || telefono === '' || correo === '' || empresa === '') {
             setAlerta(true);
         }
         else {
             const cliente = { nombre, telefono, correo, empresa };
+
+            try {
+                //ANDROID LOCALHOST
+                const url = Platform.OS === 'ios' ? 'localhost' : '192.168.0.13';
+                await axios.post(`http://${ url }:3000/clientes`, cliente);
+
+                navigation.navigate('Inicio');
+                
+            } catch (error) {
+                console.log(error);
+            }
         }
     }
 
