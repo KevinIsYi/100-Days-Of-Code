@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import FirebaseContext from '../../firebase/context';
+import FileUploader from 'react-firebase-file-uploader';
 
-export const NuevoPlatillo = () => {
+export const NuevoPlatillo = ({ history }) => {
+
+    const { firebase } = useContext(FirebaseContext);
 
     const [ formValues, setFormValues ] = useState({
         nombre: '',
@@ -9,6 +13,9 @@ export const NuevoPlatillo = () => {
         imagen: '',
         descripcion: ''
     });
+    const [ subiendo, guardarSubiendo ] = useState(false);
+    const [ progreso, guardarProgreso ] = useState(0);
+    const [ urlImagen, guardarUrlImagen ] = useState('');
 
     const { nombre, precio, categorias, imagen, descripcion } = formValues;
 
@@ -24,8 +31,32 @@ export const NuevoPlatillo = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-
+        try {
+            firebase.db.collection('productos').add({...formValues, existencia: true, imagen: urlImagen});
+            history.push('/menu');
+        } catch (error) {
+            console.log(error);
+        }
     };
+
+    const handleUploadStart = () => {
+        guardarProgreso(0);
+        guardarSubiendo(true);
+    } 
+    const handleUploadError = error=> {
+        guardarSubiendo(false);
+        console.log(error);
+    }
+    const handleUploadSuccess = async nombre => {
+        guardarProgreso(100);
+        guardarSubiendo(false);
+        const url = await firebase.storage.ref('productos').child(nombre).getDownloadURL();
+        guardarUrlImagen(url);
+    } 
+    const handleProgress = progreso => {
+        guardarProgreso(progreso);
+        console.log(progreso);
+    }
 
     return (
         <>
@@ -80,13 +111,16 @@ export const NuevoPlatillo = () => {
                         </div>
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bolg mb-2" htmlFor="imagen">Imagen</label>
-                            <input 
-                                className="shadow appearance-nonde border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            <FileUploader
+                                accept="image/*"
                                 id="imagen"
-                                type="file"
                                 name="imagen"
-                                value={ imagen }
-                                onChange={ handleFormInputChange }
+                                randomizeFilename
+                                storageRef={ firebase.storage.ref('productos') }
+                                onUploadStart={ handleUploadStart }
+                                onUploadError={ handleUploadError }
+                                onUploadSuccess={ handleUploadSuccess }
+                                onProgress={ handleProgress }
                             />
                         </div>
                         <div className="mb-4">
