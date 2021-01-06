@@ -88,7 +88,7 @@ router.delete('/categories/:id', async (req, res) => {
     }
 });
 
-router.put('/category/:id', async (req, res) => {
+router.put('/categories/:id', async (req, res) => {
     try {
         const { params:{ id }, body } = req;
         const category = await Category.findByIdAndUpdate(id, body, {

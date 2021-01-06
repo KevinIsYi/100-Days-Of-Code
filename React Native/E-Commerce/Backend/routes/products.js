@@ -34,7 +34,7 @@ router.post(`/products`, async (req, res) => {
     }
 });
 
-router.get(`/getproductbyid/:id`, async (req, res) => {
+router.get(`/products/getproductbyid/:id`, async (req, res) => {
     try {
         const { params:{ id } } = req;
         const product = await Product.findById(id).populate('category');
@@ -86,7 +86,7 @@ router.get(`/products`, async (req, res) => {
     }
 });
 
-router.put('/product/:id', async (req, res) => {
+router.put('/products/:id', async (req, res) => {
     try {
         const { params:{ id }, body, body:{ category } } = req;
 
@@ -122,7 +122,7 @@ router.put('/product/:id', async (req, res) => {
     }
 });
 
-router.delete('/product/:id', async (req, res) => {
+router.delete('/products/:id', async (req, res) => {
     try {
         const { params:{ id } } = req;
         const deletedProduct = await Product.findByIdAndDelete(id);
@@ -146,7 +146,7 @@ router.delete('/product/:id', async (req, res) => {
     }
 });
 
-router.get('/product/get/count', async (req, res) => {
+router.get('/products/get/count', async (req, res) => {
     try {
         const productCount = await Product.countDocuments((count) => count);
         res.json({
@@ -163,7 +163,7 @@ router.get('/product/get/count', async (req, res) => {
     }
 });
 
-router.get('/product/get/featured/', async (req, res) => {
+router.get('/products/get/featured/', async (req, res) => {
     try {
         const featuredProducts = await Product.find({ isFeatured: true }).populate('category');
         res.json({
