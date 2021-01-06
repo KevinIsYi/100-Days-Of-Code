@@ -23,3 +23,4 @@ app.listen(4000, () => {
 app.use(apiRoute, require('./routes/products'));
 app.use(apiRoute, require('./routes/categories'));
 app.use(apiRoute, require('./routes/users'));
+app.use(apiRoute, require('./routes/orders'));

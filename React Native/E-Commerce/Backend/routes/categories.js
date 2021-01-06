@@ -78,13 +78,13 @@ router.delete('/categories/:id', async (req, res) => {
         res.json({
             ok: true,
             message: 'Category was deleted'
-        })
+        });
     } catch (error) {
         console.log(error);
         res.status(500).json({
             ok: false,
             error
-        })
+        });
     }
 });
 
@@ -105,13 +105,13 @@ router.put('/categories/:id', async (req, res) => {
         res.json({
             ok: true,
             category
-        })
+        });
     } catch (error) {
         console.log(error);
         res.status(500).json({
             ok: false,
             error
-        })
+        });
     }
 });
 
