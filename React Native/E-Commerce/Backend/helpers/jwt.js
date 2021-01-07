@@ -23,6 +23,13 @@ const authJwt = () => {
                         'OPTIONS'
                     ]
                 },
+                {
+                    url: /\/public\/uploads(.*)/, 
+                    methods: [ 
+                        'GET',
+                        
+                    ]
+                },
                 '/api/v1/user/login',
                 '/api/v1/user/register'
             ]

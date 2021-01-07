@@ -1,12 +1,52 @@
 const { Router, query } = require('express');
 const Category = require('../model/categorySchema');
 const Product = require('../model/productSchema');
+const multer = require('multer');
 
 const router = Router();
 
-router.post(`/products`, async (req, res) => {
+const FILE_TYPE_MAP = {
+    'image/png': 'png',
+    'image/jpg': 'jpg',
+    'image/jpeg': 'jpeg'
+};
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        const { mimetype } = file;
+        const isValidFormatFile = FILE_TYPE_MAP[mimetype];
+        const uploadError = isValidFormatFile ? null : new Error('Invalid image format');
+        
+        cb(uploadError, 'public/uploads');
+    },
+    filename: (req, file, cb) =>  {
+        const fileName = file.originalname.replace(' ', '-');
+        const { mimetype } = file;
+
+        const extension = FILE_TYPE_MAP[mimetype];
+
+        cb(null, `${ fileName }-${ Date.now() }.${ extension }`);
+    }
+});
+
+const uploadOptions = multer({ storage })
+
+router.post(`/products`, uploadOptions.single('images'), async (req, res) => {
     try {
-        const { body, body:{ category } } = req;
+        const { body, body:{ category }, protocol, file } = req; // filename is coming from multer cb(null, filename + '-' + Date.now())
+
+        if (!file) {
+            return res.status(400).json({
+                ok: false,
+                message: "Need Product Image"
+            });
+        }
+
+        const { filename } = file;
+
+        console.log("body recibido: ", body);
+        const baseImagePath = `${ protocol }://${ req.get('host') }/public/uploads/${ filename }`;
+        body.images = baseImagePath;
 
         const selectedCategoryId = await Category.findById(category);
 
@@ -179,5 +219,46 @@ router.get('/products/get/featured/', async (req, res) => {
         })
     }
 });
+
+router.put(
+    '/products/gallery-images/:id', 
+    uploadOptions.array('images', 10), 
+    async(req, res) => { // max ten files
+
+    try {
+        const { params:{ id } } = req;
+        
+        const { files, protocol } = req;
+        let imagesPaths = [];
+
+        
+        if (files) {
+            const baseImagePath = `${ protocol }://${ req.get('host') }/public/uploads/`;
+            files.map(({ filename }) => {
+                imagesPaths.push(`${ baseImagePath }${ filename }`);
+            });
+        }
+
+        const product = await Product.findByIdAndUpdate(id, 
+        {
+            images: imagesPaths
+        },
+        {
+            new: true
+        });
+
+        res.json({
+            ok: true,
+            product
+        });
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            ok: false,
+            message: 'Failed'
+        });
+    }
+})
 
 module.exports = router;
