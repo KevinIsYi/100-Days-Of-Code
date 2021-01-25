@@ -13,6 +13,12 @@ class Sockets {
         // On connection
         this.io.on('connection', ( socket ) => {
             socket.emit('current-bands', this.bandList.getBands());
+            console.log("Cliente conectado");
+
+            socket.on('vote-band', (id) => {
+                this.bandList.increaseVotes(id);
+                this.io.emit('current-bands', this.bandList.getBands());
+            });
         });
     }
 }
