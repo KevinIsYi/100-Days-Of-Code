@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import './index.css';
+import { TicketApp } from './TicketApp';
 
 ReactDOM.render(
-    <App />,
+    <TicketApp />,
   document.getElementById('root')
 );
