@@ -1,6 +1,8 @@
 import { CloseCircleOutlined, RightOutlined } from '@ant-design/icons';
 import { Button, Col, Divider, Row, Typography } from 'antd';
+import { useContext, useState } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
+import { SocketContext } from '../context/SocketContext';
 import { getUserStorage } from '../helpers/getUserStorage';
 import { useHideMenu } from '../hooks/useHideMenu';
 
@@ -10,6 +12,9 @@ export const DesktopScreen = () => {
 
     const { agent, desktop } = getUserStorage();
     const history = useHistory();
+    const [ticket, setTicket] = useState(null);
+    const { socket } = useContext(SocketContext);
+
     useHideMenu(false);
 
     const logout = () => {
@@ -19,7 +24,17 @@ export const DesktopScreen = () => {
     };
 
     const nextTicket = () => {
-
+        socket.emit(
+            'next-ticket',
+            {
+                agent,
+                desktop
+            },
+            ( ticket ) => {
+                setTicket(ticket);
+                console.log(ticket);
+            }
+        )
     }
 
     if (!agent || !desktop) {
@@ -47,19 +62,22 @@ export const DesktopScreen = () => {
                 </Col>
             </Row>
             <Divider />
-            <Row>
-                <Col>
-                    <Text>
-                        Busy with ticket: {''}
-                    </Text>
-                    <Text
-                        style={{ fontSize: 25 }}
-                        type="danger"
-                    >
-                        5
-                    </Text>
-                </Col>
-            </Row>
+            {
+                ticket && 
+                    <Row>
+                        <Col>
+                            <Text>
+                                Busy with ticket: {''}
+                            </Text>
+                            <Text
+                                style={{ fontSize: 25 }}
+                                type="danger"
+                            >
+                                { ticket.number }
+                            </Text>
+                        </Col>
+                    </Row>
+            }
             <Row>
                 <Col offset="18" span="6" align="right">
                     <Button
