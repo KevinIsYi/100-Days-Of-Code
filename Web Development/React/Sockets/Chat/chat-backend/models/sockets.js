@@ -11,14 +11,11 @@ class Sockets {
 
     socketEvents() {
         // On connection
-        this.io.on('connection', ( socket ) => {
-
+        this.io.on('connection', (socket) => {
             
-        
+            
         });
     }
-
-
 }
 
 
