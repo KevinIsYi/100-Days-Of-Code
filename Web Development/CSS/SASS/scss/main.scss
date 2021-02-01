@@ -1,0 +1,61 @@
+@import './resets';
+@import './variables';
+
+@function weight($weight-name) { // Should compute and return values
+    @return map-get($font-weights ,  $weight-name);
+};
+
+@mixin flexCenter($direction) { // Mixin should define styles
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: $direction;
+}
+
+@mixin theme($light-theme: true) {
+    @if $light-theme {
+        background: lighten($primary-color, 100%);
+        color: darken($text-color, 100%);
+    }   
+}
+
+@mixin mobile {
+    @media (max-width: $mobile) {
+        @content;
+    }
+}
+
+body {
+    background: $primary-color;
+}
+
+.main { // Nesting
+    @include flexCenter(row);
+    width: 120% - 40%; // Operation must be the same type (pixels, percentage, etc)
+    margin: 0 auto;
+    
+    #{&}__paragraph1 { // This sintax sill nest css
+        font-weight: weight(bold);
+        &:hover { // & equals the parent
+            color: pink;
+        }
+    }
+    @include mobile { // This is a media query
+        flex-direction: column;
+    }
+}
+
+/*
+#{&}__paragraph2 {
+    @extend .main__paragraph1;
+
+    &:hover {
+        color: gray;
+    }
+}
+*/
+
+.light {
+    @include theme(true);   
+}
