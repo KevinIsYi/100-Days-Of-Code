@@ -79,6 +79,25 @@ const createUser = async (req, res) => {
 
 const renewToken = async (req, res) => {
 
+    const { uid } = req;
+
+    try {
+        const token = await generateJWT(uid);
+        const user = await User.findById(uid);
+    
+        res.json({
+            ok: true,
+            user,
+            token
+        });
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            ok: true,
+            message: 'Contact the admin'
+        })
+    }
 };
 
 module.exports = {
