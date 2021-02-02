@@ -50,7 +50,7 @@ const createUser = async (req, res) => {
         
         if (emailExist) {
             return res.status(400).json({
-                ok: true,
+                ok: false,
                 message: 'Email already exist'
             }); 
         }
