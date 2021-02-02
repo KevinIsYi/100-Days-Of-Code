@@ -1,7 +1,6 @@
 import React from 'react'
 
 export const SideBarChatItem = () => {
-    console.log("Eh");
     return (
         <div className="chat_list">
             <div className="chat_people">
