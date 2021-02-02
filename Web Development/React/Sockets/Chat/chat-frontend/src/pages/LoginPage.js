@@ -41,7 +41,11 @@ export const LoginPage = () => {
 
         if (!await login(email, password)) {
             Swal.fire('Error', 'Usuario o contraseña son incorrectos', 'error');
-        } 
+        }
+    }
+
+    const allDataIsOk = () => {
+        return email.trim().length > 0 && password.trim().length > 0   
     }
 
     useEffect(() => {
@@ -55,6 +59,8 @@ export const LoginPage = () => {
             }));
         }
     }, []);
+
+    console.log("Eh");
     
     return (
         <form
@@ -116,7 +122,11 @@ export const LoginPage = () => {
             </div>
 
             <div className="container-login100-form-btn m-t-17">
-                <button className="login100-form-btn">
+                <button
+                    className="login100-form-btn"
+                    type="submit"
+                    disabled={ !allDataIsOk() }
+                >
                     Ingresar
                 </button>
             </div>
