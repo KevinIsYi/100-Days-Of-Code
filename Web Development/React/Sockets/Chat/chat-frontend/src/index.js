@@ -4,5 +4,5 @@ import { ChatApp } from './ChatApp';
 
 ReactDOM.render(
     <ChatApp />,
-  document.getElementById('root')
+    document.getElementById('root')
 );
