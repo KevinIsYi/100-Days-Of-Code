@@ -60,8 +60,6 @@ export const LoginPage = () => {
         }
     }, []);
 
-    console.log("Eh");
-    
     return (
         <form
             className="login100-form validate-form flex-sb flex-w"
