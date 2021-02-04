@@ -1,17 +1,27 @@
 import React, { useContext } from 'react'
 import { ChatContext } from '../context/chat/ChatContext';
+import { fetchWithToken } from '../helpers/fetch';
 import { types } from '../types/types';
 
 export const SideBarChatItem = ({ user }) => {
     
     const { online, name, uid } = user;
-    const { chatState:{ activeChat }, dispatch } = useContext(ChatContext);
+    const { chatState: { activeChat }, dispatch } = useContext(ChatContext);
+    const token = localStorage.getItem('token');
 
-    const selectChat = () => {
+    const selectChat = async () => {
         dispatch({
             type: types.activateChat,
             payload: uid
         });
+
+        if (uid !== activeChat) {
+            const resp = await fetchWithToken(token, `messages/${uid}`);
+            dispatch({
+                type: types.loadChat,
+                payload: resp.messages
+            });
+        }
     }
 
     return (

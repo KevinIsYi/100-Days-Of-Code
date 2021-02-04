@@ -18,7 +18,7 @@ const getChat = async (req, res) => {
                 }
             ]
         }).sort({
-            createdAt: 'desc'
+            createdAt: 'asc'
         }).limit(30);
 
         res.json({
@@ -26,7 +26,7 @@ const getChat = async (req, res) => {
             messages: last30
         })
     } catch (error) {
-        
+        console.log(error);
     }
 
 };
