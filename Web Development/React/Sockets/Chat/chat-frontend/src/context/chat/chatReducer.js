@@ -30,6 +30,14 @@ export const chatReducer = (state, action) => {
                 ...state,
                 messages: action.payload
             }
+        case types.logOut: {
+            return {
+                uid: '',
+                activeChat: null,
+                users: [], 
+                messages: []
+            }
+        }
         default:
             return state;
     }
