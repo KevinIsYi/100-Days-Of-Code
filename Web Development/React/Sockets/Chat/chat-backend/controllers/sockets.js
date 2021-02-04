@@ -25,12 +25,19 @@ const disconnectUser = async (uid) => {
         }
     );
 
-    console.log("Ya lo desconecté joeputa");
-
     return user;
 }
 
+const getUsers = async (uid) => {
+    const users = await User.find({ _id: { $ne: uid } }).sort('-online');
+    
+    console.log(users);
+
+    return users;
+};
+
 module.exports = {
     connectUser,
-    disconnectUser
+    disconnectUser,
+    getUsers
 }

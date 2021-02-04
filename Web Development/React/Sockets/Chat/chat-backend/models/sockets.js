@@ -1,4 +1,4 @@
-const { connectUser, disconnectUser } = require("../controllers/sockets");
+const { connectUser, disconnectUser, getUsers } = require("../controllers/sockets");
 const { getUIDFromToken } = require("../helpers/jwt");
 
 class Sockets {
@@ -12,8 +12,7 @@ class Sockets {
 
     socketEvents() {
         // On connection
-        this.io.on('connection', (socket) => {
-            console.log("Cliente conectado");
+        this.io.on('connection', async (socket) => {
             
             const { ok, uid } = getUIDFromToken(socket.handshake.query['x-token']);
 
@@ -23,13 +22,14 @@ class Sockets {
             
             connectUser(uid);
 
+            this.io.emit('list-users', await getUsers(uid));
+            
             socket.on('disconnect', () => {
                 disconnectUser(uid);
-                console.log('cliente desconectado');
-            })
+                this.io.emit('list-users', await getUsers(uid));
+            });
         });
     }
 }
-
 
 module.exports = Sockets;
