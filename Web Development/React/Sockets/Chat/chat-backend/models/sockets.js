@@ -1,4 +1,4 @@
-const { connectUser, disconnectUser, getUsers } = require("../controllers/sockets");
+const { connectUser, disconnectUser, getUsers, saveMessage } = require("../controllers/sockets");
 const { getUIDFromToken } = require("../helpers/jwt");
 
 class Sockets {
@@ -22,11 +22,23 @@ class Sockets {
             
             connectUser(uid);
 
-            this.io.emit('list-users', await getUsers(uid));
+            // Unir al usuario a una sala
+            socket.join(uid);
+            //this.io.to('sala-gamer').emit(''); //Esto le manda mensaje a todos los que estén unidos en la sala gamer
+
+            this.io.emit('list-users', await getUsers());
             
+            socket.on('one-to-one-message', async (payload) => {
+                const newMessage = await saveMessage(payload);
+
+                if (newMessage) {
+                    this.io.to(payload.to).emit('one-to-one-message', newMessage);
+                }
+            });
+
             socket.on('disconnect', async () => {
-                this.io.emit('list-users', await getUsers(uid));
-                disconnectUser(uid);
+                await disconnectUser(uid);
+                this.io.emit('list-users', await getUsers());
             });
         });
     }
