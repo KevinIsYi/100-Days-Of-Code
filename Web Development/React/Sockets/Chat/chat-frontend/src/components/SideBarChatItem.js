@@ -1,11 +1,24 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { ChatContext } from '../context/chat/ChatContext';
+import { types } from '../types/types';
 
 export const SideBarChatItem = ({ user }) => {
     
-    const { online, name } = user;
+    const { online, name, uid } = user;
+    const { chatState:{ activeChat }, dispatch } = useContext(ChatContext);
+
+    const selectChat = () => {
+        dispatch({
+            type: types.activateChat,
+            payload: uid
+        });
+    }
 
     return (
-        <div className="chat_list">
+        <div
+            className={`chat_list ${ (uid === activeChat) && 'active_chat'}`}
+            onClick={ selectChat }
+        >
             <div className="chat_people">
                 <div className="chat_img"> 
                     <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil" />
