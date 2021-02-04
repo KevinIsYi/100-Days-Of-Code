@@ -34,11 +34,16 @@ export const SocketProvider = ({ children }) => {
         });
     }, [socket, dispatch]);
 
+    
     useEffect(() => {
         socket?.on('one-to-one-message', (message) => {
-            console.log(message);
+            dispatch({
+                type: types.newMessage,
+                payload: message
+            });
         });
-    }, [socket]);
+    }, [socket, dispatch]);
+    
 
     return (
         <SocketContext.Provider value={{ socket, online }}>

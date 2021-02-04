@@ -33,6 +33,8 @@ class Sockets {
 
                 if (newMessage) {
                     this.io.to(payload.to).emit('one-to-one-message', newMessage);
+                    this.io.to(payload.from).emit('one-to-one-message', newMessage);
+                    
                 }
             });
 
