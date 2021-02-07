@@ -1,0 +1,17 @@
+@mixin telefono {
+    @media (min-width: $telefono) {
+        @content;  // Propiedades que se le pasan 
+    }
+}
+
+@mixin tablet {
+    @media (min-width: $tablet) {
+        @content;  // Propiedades que se le pasan 
+    }
+}
+
+@mixin desktop {
+    @media (min-width: $desktop) {
+        @content;  // Propiedades que se le pasan 
+    }
+}
