@@ -144,3 +144,27 @@ console.log(makeFullName({
     lastName: 'Rodríguez'
 }));
 
+interface Tab<T> {
+    id: string,
+    position: number,
+    data: T
+}
+
+type NumberTab = Tab<number>;
+type StringTab = Tab<string>;
+
+interface isPerson {
+    name: string,
+    age: number,
+    speak(a: string): void;
+};
+
+const me: isPerson = {
+    name: 'Kevin',
+    age: 15,
+    speak(a: string) {
+        console.log(`${this.name} says ${a}`);   
+    }
+}
+
+me.speak('Hola');
