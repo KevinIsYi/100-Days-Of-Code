@@ -58,3 +58,20 @@ console.log(combine('Max', 'Ana', 'as-text'));
 
 let combineValues: (a: number, b: number, c: ConversionDescriptor) => Combinable; // This variable can be a function with these parameters and this return type
 combineValues = combine;
+
+
+const opcionales = (name: string = 'Pedro', lastName: string, age?: number) => {
+    console.log(`Name: ${name}, his last name is: ${lastName} and he is ${age} years old`);   
+}
+
+opcionales('Kevin', 'Rodríguez', 18);
+
+
+const restParams = (postre: string, ...frutas:string[]): void => {
+    console.log(`El postre es: ${postre} y tienes ${frutas}`);
+    frutas.forEach(fruta => {
+        console.log(fruta);
+    })
+}
+
+restParams('Pastel', 'naranja', 'pedro', 'sí');
