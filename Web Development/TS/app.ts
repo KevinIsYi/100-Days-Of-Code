@@ -75,3 +75,72 @@ const restParams = (postre: string, ...frutas:string[]): void => {
 }
 
 restParams('Pastel', 'naranja', 'pedro', 'sí');
+
+class Vehiculo { // Classes attributes and methods are set as public by default
+    private marca: string;
+    private fecha: string;
+    private puertas: number;
+
+    constructor(marca: string, fecha: string, puertas: number) {
+        this.marca = marca;
+        this.fecha = fecha;
+        this.puertas = puertas;
+    }
+    acelerar(): void {
+        console.log('Acelerando');
+    }
+    frenar(): void {
+        console.log('Freno');
+    }
+
+    getMarca(): string {
+        return this.marca;
+    }
+}
+
+const coche = new Vehiculo('Uno', 'Dos', 5);
+
+const data = {
+    namee: 'Holi',
+    pala: 15,
+    ehhe: true
+}
+
+type numArray = Array<number>;
+const last = <T>(arr: T[] /* Array<T>*/): T => {
+    return arr[arr.length - 1];
+}
+
+console.log(last([1, 2, 3]));
+console.log(last(['1', '2', '3']));
+
+const numero = last<number>([1, 2, 3]);
+const numero2 = last([1, 2, 3]);
+console.log(numero, numero2);
+
+class GenericClass<T> {
+    value: T;
+
+    constructor(value: T) {
+        this.value = value;
+    }
+}
+
+const newGeneric = new GenericClass<string>('123');
+const newGeneric2 = new GenericClass<number>(123);
+const newGeneric3 = new GenericClass<Array<string>>(['123', '321']);
+
+const makeFullName = <T extends { firstName: string; lastName: string }>(
+    obj: T
+) => {
+    return {
+        ...obj,
+        fullName: obj.firstName + ' ' + obj.lastName
+    }
+}
+
+console.log(makeFullName({
+    firstName: 'Kevin',
+    lastName: 'Rodríguez'
+}));
+
