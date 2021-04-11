@@ -3,6 +3,7 @@ export const TiposBasicos = () => {
     let nombre: string | number = 'Kevin';
     const edad = 35;
     const isActive = true;
+    const poderes: string[]= [];
 
     return (
         <>
