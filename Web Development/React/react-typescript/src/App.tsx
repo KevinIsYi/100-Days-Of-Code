@@ -1,5 +1,8 @@
 // import { TiposBasicos } from "./typescript/TiposBasicos"
-import { ObjetosLiterales } from './typescript/ObjetosLiterales';
+// import { Funciones } from './typescript/Funciones';
+// import { ObjetosLiterales } from './typescript/ObjetosLiterales';
+// import { Contador } from "./components/Contador"
+import { ContadorHook } from './components/ContadorHook';
 
 
 const App = () => {
@@ -8,7 +11,10 @@ const App = () => {
         <h1>Introducción a TS React</h1>
         <hr />
         {/* <TiposBasicos /> */}
-        <ObjetosLiterales />
+        {/* <ObjetosLiterales /> */}
+        {/* <Funciones /> */}
+        {/* <Contador /> */}
+        <ContadorHook />
     </div>
   )
 }
