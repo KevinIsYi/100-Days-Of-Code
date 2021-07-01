@@ -1,4 +1,5 @@
 import React from 'react';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { createDrawerNavigator, DrawerContentComponentProps, DrawerContentOptions, DrawerContentScrollView } from '@react-navigation/drawer';
 import { SettingsScreen } from '../screens/SettingsScreen';
 // import { StackNavigator } from './StackNavigator';
@@ -49,16 +50,24 @@ const InnerMenu = ({ navigation }: DrawerContentComponentProps<DrawerContentOpti
             </View>
             <View style={styles.menuContainer}>
                 <TouchableOpacity 
-                    style={styles.menuButton}
+                    style={{
+                        ...styles.menuButton,
+                        flexDirection: 'row'
+                    }}
                     onPress={() => navigation.navigate('Tabs')}
                 >
-                    <Text style={styles.menuItem}>Navegación</Text>
+                    <Icon name='compass-outline' size={25} color="black" />
+                    <Text style={styles.menuItem}> Navegación</Text>
                 </TouchableOpacity>
                 <TouchableOpacity 
-                    style={styles.menuButton}
+                    style={{
+                        ...styles.menuButton,
+                        flexDirection: 'row'
+                    }}
                     onPress={() => navigation.navigate('Settings')}
                 >
-                    <Text style={styles.menuItem}>Settings</Text>
+                    <Icon name='cog-outline' size={25} color="black" />
+                    <Text style={styles.menuItem}> Settings</Text>
                 </TouchableOpacity>
             </View>
         </DrawerContentScrollView>

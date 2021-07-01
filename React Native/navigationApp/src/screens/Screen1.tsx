@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react'
 import { DrawerScreenProps } from '@react-navigation/drawer'
+import Icon from 'react-native-vector-icons/Ionicons';
 import {
     Button,
     Text,
     TouchableOpacity,
     View,
 } from 'react-native'
-import { styles } from '../theme/appTheme'
+import { colors, styles } from '../theme/appTheme'
 
 interface Props extends DrawerScreenProps<any, any> { }
 
@@ -15,10 +16,18 @@ export const Screen1 = ({ navigation }: Props) => {
     useEffect(() => {
         navigation.setOptions({
             headerLeft: () => (
-                <Button 
-                    title="Menú"
-                    onPress={() => navigation.toggleDrawer()}
-                />
+                <TouchableOpacity
+                    style={{
+                        marginLeft: 15
+                    }}
+                >
+                    <Icon
+                        name="menu-outline"
+                        size={35}
+                        color={colors.primary}
+                        onPress={() => navigation.toggleDrawer()}
+                    />
+                </TouchableOpacity>
             )
         });
     }, []);
@@ -38,6 +47,11 @@ export const Screen1 = ({ navigation }: Props) => {
                         name: 'Kevin'
                     })}
                 >
+                    <Icon
+                        name="body-outline"
+                        size={35}
+                        color="white"
+                    />
                     <Text style={styles.btnColorWhite}>Kevin</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
@@ -47,6 +61,11 @@ export const Screen1 = ({ navigation }: Props) => {
                         name: 'María'
                     })}
                 >
+                    <Icon
+                        name="woman-outline"
+                        size={35}
+                        color="white"
+                    />
                     <Text style={styles.btnColorWhite}>María</Text>
                 </TouchableOpacity>
             </View>

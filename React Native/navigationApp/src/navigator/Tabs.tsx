@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { Tab1Screen } from '../screens/Tab1Screen';
@@ -34,24 +35,25 @@ const TabsAndroid = () => {
 
                     switch (name) {
                         case 'Tab1Screen':
-                            iconName = 'T1';
+                            iconName = 'bandage-outline';
                             break;
                         case 'Tab2Screen':
-                            iconName = 'T2';
+                            iconName = 'basketball-outline';
                             break;
                         case 'StackNavigator':
-                            iconName = 'SN';
+                            iconName = 'bookmarks-outline';
                             break;
                         default:
                             iconName = '';
                     }
                     return (
-                        <Text style={{ color }}>{iconName}</Text>
+                        <Icon name={iconName} size={20} color={color} />
                     )
                 }
             })}
         >
-            <BottomTabAndroid.Screen name="Tab1Screen" options={{ title: 'Tab 1', tabBarIcon: (props) => <Text style={{ color: props.color }}>T1</Text> }} component={Tab1Screen} />
+            {/* <BottomTabAndroid.Screen name="Tab1Screen" options={{ title: 'Tab 1', tabBarIcon: (props) => <Text style={{ color: props.color }}>T1</Text> }} component={Tab1Screen} /> */}
+            <BottomTabAndroid.Screen name="Tab1Screen" options={{ title: 'Tab 2' }} component={Tab1Screen} />
             <BottomTabAndroid.Screen name="Tab2Screen" options={{ title: 'Tab 2' }} component={TopTabNavigator} />
             <BottomTabAndroid.Screen name="StackNavigator" options={{ title: 'Stack' }} component={StackNavigator} />
         </BottomTabAndroid.Navigator>
