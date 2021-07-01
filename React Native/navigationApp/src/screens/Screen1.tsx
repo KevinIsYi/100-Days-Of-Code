@@ -50,10 +50,6 @@ export const Screen1 = ({ navigation }: Props) => {
                     <Text style={styles.btnColorWhite}>María</Text>
                 </TouchableOpacity>
             </View>
-            <Button
-                title="Person"
-                onPress={() => { navigation.navigate('PersonScreen') }}
-            />
         </View>
     )
 }
