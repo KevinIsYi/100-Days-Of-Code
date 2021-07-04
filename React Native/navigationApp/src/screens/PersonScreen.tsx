@@ -5,6 +5,8 @@ import { styles } from '../theme/appTheme';
 import { StackScreenProps } from '@react-navigation/stack';
 import { useEffect } from 'react';
 import { RootStackParams } from '../navigator/StackNavigator';
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
 
 // interface RouteParams {
 //     id: number;
@@ -19,11 +21,14 @@ export const PersonScreen = ({ navigation, route }: Props) => {
     // const { id, name } = params as RouteParams;
 
     const { params: { id, name } } = route;
+    const { changeUsername } = useContext(AuthContext);
 
     useEffect(() => {
         navigation.setOptions({
             title: name
         });
+
+        changeUsername(name);
     }, []);
 
     return (
