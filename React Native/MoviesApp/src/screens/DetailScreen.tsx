@@ -1,18 +1,23 @@
-import { StackScreenProps } from '@react-navigation/stack';
 import React from 'react';
-import Icon from 'react-native-vector-icons/Ionicons';
-import { View, Image, StyleSheet, Dimensions, ScrollView, Text } from 'react-native';
+import { View, Image, StyleSheet, Dimensions, ScrollView, Text, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParams } from '../navigator/Navigation';
+import Icon from 'react-native-vector-icons/Ionicons';
+import { useMovieDetails } from '../hooks/useMovieDetails';
+import { MovieDetails } from '../components/MovieDetails';
 
 const { height } = Dimensions.get('screen');
 
 interface Props extends StackScreenProps<RootStackParams, 'DetailScreen'> { };
 
-export const DetailScreen = ({ navigation, route }: Props) => {
+export const DetailScreen = ({ route, navigation }: Props) => {
 
     const { params } = route;
-    const { poster_path, original_title, title } = params;
+    const { id, poster_path, original_title, title } = params;
+    const { isLoading, cast, fullMovieName } = useMovieDetails(id);
     const uri = `https://image.tmdb.org/t/p/w500${poster_path}`;
+
+
 
     return (
         <ScrollView>
@@ -26,12 +31,28 @@ export const DetailScreen = ({ navigation, route }: Props) => {
                 <Text style={styles.subtitle}>{original_title}</Text>
                 <Text style={styles.title} >{title}</Text>
             </View>
-            <View style={styles.marginContainer}>
-                <Icon
-                    name="star-outline"
-                    color="grey"
-                    size={20}
-                />
+            {
+                isLoading ? (
+                    <ActivityIndicator size={30} color="grey" style={{ marginTop: 20 }} />
+
+                ) : (
+                    <MovieDetails
+                        movieFull={fullMovieName!}
+                        cast={cast}
+                    />
+                )
+            }
+            <View style={styles.backButton}>
+                <TouchableOpacity
+                    onPress={() => navigation.pop()}
+                >
+                    <Icon
+                        color="white"
+                        size={50}
+                        style={styles.backButton}
+                        name="arrow-back-outline"
+                    />
+                </TouchableOpacity>
             </View>
         </ScrollView>
     )
@@ -68,5 +89,12 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         fontWeight: 'bold'
+    },
+    backButton: {
+        position: 'absolute',
+        elevation: 999,
+        top: 10,
+        left: 10,
+        zIndex: 999
     }
 });
