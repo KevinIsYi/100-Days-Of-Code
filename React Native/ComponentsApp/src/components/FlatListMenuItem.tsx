@@ -25,14 +25,14 @@ export const FlatListMenuItem = ({ menuItem }: Props) => {
                 }}>
                     <Icon
                         name={icon}
-                        color="gray"
+                        color="#5856D6"
                         size={30}
                     />
                     <Text style={styles.itemText}>{name}</Text>
                 </View>
                 <Icon
                     name="chevron-forward-outline"
-                    color="gray"
+                    color="#5856D6"
                     size={30}
                 />
             </View>
