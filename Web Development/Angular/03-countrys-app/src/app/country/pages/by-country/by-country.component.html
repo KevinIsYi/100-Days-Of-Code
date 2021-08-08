@@ -1,0 +1,43 @@
+<h2>By Country</h2>
+<hr>
+
+<div class="row">
+  <div class="col">
+    <form (ngSubmit)="find()" autocomplete="off">
+      <input
+        type="text"
+        name="term"
+        placeholder="Find Country..."
+        class="form-control"
+        [(ngModel)]="term"
+      >
+    </form>
+  </div>
+</div>
+
+<hr>
+<div class="alert alert-danger">Could not find: ABC</div>
+
+<div class="row">
+  <div class="col">
+    <table class="table table-hover">
+      <thead>
+        <th>#</th>
+        <th>Flag</th>
+        <th>Name</th>
+        <th>Población</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Flag</td>
+          <td>Name</td>
+          <td>123465</td>
+          <td>
+            <a href="/country/cr">See...</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
