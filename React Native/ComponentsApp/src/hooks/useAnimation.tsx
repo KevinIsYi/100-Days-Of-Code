@@ -6,17 +6,18 @@ export const useAnimation = () => {
     const opacity = useRef(new Animated.Value(0)).current;
     const position = useRef(new Animated.Value(0)).current;
 
-    const fadeIn = () => {
+    const fadeIn = (duration: number = 300) => {
         Animated.timing(
             opacity,
             {
                 toValue: 1,
-                duration: 500,
+                duration: duration,
                 useNativeDriver: true
             }
-        ).start(() => {
-            console.log("Termina, papu");
-        });
+        ).start();
+        // ).start(() => {
+        //     console.log("Termina, papu");
+        // });
     }
 
     const startMovingPosition = (initialPosition: number, duration: number = 300) => {
