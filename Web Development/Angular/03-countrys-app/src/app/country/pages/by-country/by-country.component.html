@@ -3,41 +3,49 @@
 
 <div class="row">
   <div class="col">
-    <form (ngSubmit)="find()" autocomplete="off">
-      <input
-        type="text"
-        name="term"
-        placeholder="Find Country..."
-        class="form-control"
-        [(ngModel)]="term"
-      >
-    </form>
+    <app-country-input
+      (onEnter)="find($event)"
+      (onDebounce)="suggestions($event)"
+      placeholder="Country"
+    >
+    </app-country-input>
   </div>
 </div>
 
-<hr>
-<div class="alert alert-danger">Could not find: ABC</div>
+<ul class="list-group">
+  <li
+    *ngFor="let country of suggestedCountries"
+    class="list-group-item list-group-item-action"
+  >
+    <a
+      class="navlink"
+      [routerLink]="['/country', country.alpha2Code]"
+    >
+      {{country.name}}
+    </a>
+  </li>
+  <li
+    (click)="find(term)"
+    class="list-group-item list-group-item-action"
+  >
+    <a class="navlink">
+      Search "{{term}}"
+    </a>
+  </li>
+</ul>
 
-<div class="row">
+<hr>
+<div
+  *ngIf="hasError"
+  class="alert alert-danger"
+>
+  Could not find: {{this.term}}
+</div>
+<div
+  *ngIf="countries.length > 0"
+  class="row"
+>
   <div class="col">
-    <table class="table table-hover">
-      <thead>
-        <th>#</th>
-        <th>Flag</th>
-        <th>Name</th>
-        <th>Población</th>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>Flag</td>
-          <td>Name</td>
-          <td>123465</td>
-          <td>
-            <a href="/country/cr">See...</a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <app-country-table [countries]="countries"></app-country-table>
   </div>
 </div>

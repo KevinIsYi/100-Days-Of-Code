@@ -1,0 +1,4 @@
+<form (ngSubmit)="find()" autocomplete="off">
+  <input [placeholder]="placeholder" type="text" name="term" placeholder="Find Country..." class="form-control"
+    [(ngModel)]="term" (input)="onKeyPress()">
+</form>
