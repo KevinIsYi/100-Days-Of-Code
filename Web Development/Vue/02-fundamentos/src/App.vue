@@ -1,20 +1,31 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <Indecision />
+  <!-- <img alt="Vue logo" src="./assets/logo.png" />
+  <Counter name="Padre" :start="10" />
+  <Counter name="Hijo" :start="15" /> -->
+  <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+  <!-- <hello-world msg="Welcome to Your Vue.js App" /> -->
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import Counter from "./components/Counter.vue";
+import Indecision from "./components/Indecision.vue";
+// import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    // Counter,
+    Indecision,
+  },
+  name: "App",
+};
 </script>
 
 <style>
+body,
+html {
+  background-color: black;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
