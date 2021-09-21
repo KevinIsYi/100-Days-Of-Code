@@ -18,11 +18,13 @@ regression.fit(x_train, y_train) # Tienen que ser del mismo tamaño
 y_pred = regression.predict(x_test)
 
 # Visualizar datos
+"""
 plt.scatter(x_train, y_train, color = "red") # eje X, eje Y
 plt.plot(x_train, regression.predict(x_train), color = "blue")
 plt.title("Sueldo vs Años de Experiencia (Conjunto de Entrenamiento")
 plt.xlabel("Años de Experiencia")
 plt.ylabel("Sueldo en $")
+"""
 
 
 plt.scatter(x_test, y_test, color = "red") # eje X, eje Y
